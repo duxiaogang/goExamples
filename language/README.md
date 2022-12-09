@@ -14,4 +14,5 @@
 - panic的输出总在最后？
   - 或者说让defer先执行完，保证安全
 - 多个panic输出会按panic时间排序？
+- 参考 [5.4 panic 和 recover](https://draveness.me/golang/docs/part2-foundation/ch05-keyword/golang-panic-recover/)
 
