@@ -6,6 +6,11 @@
 - [GoMock快速上手教程](https://zhuanlan.zhihu.com/p/410445621)
 
 ## gomonkey:
+### first:
+- 使用gomonkey的例子
+- 注意需使用-l选项：
+  > go test -gcflags=all=-l
+
 ### function_value:
 ```
 func a() int { return 1 }
