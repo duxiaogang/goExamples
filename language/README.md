@@ -9,6 +9,11 @@
 
 
 
+## linkname:
+- 使用linkname引用非导出函数
+
+
+
 ## panic:
 ### nest:
 - panic的输出总在最后？
