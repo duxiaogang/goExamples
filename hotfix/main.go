@@ -2,28 +2,18 @@ package main
 
 import (
 	"fmt"
-	"github.com/agiledragon/gomonkey/v2"
 	"github.com/duxiaogang/goExamples/hotfix/app"
 	"os"
 	"plugin"
-	"reflect"
 )
 
-//func MainFunc1() int {
-//	return 3
-//}
-
 type PatchInterface interface {
-	Patch(apply func(target, double reflect.Value))
-	Reset()
+	Patch()
 }
 
 func main() {
 	fmt.Printf("main(), address of app.GlobalFunc1 = %p\n", app.GlobalFunc1)
 	fmt.Printf("main(), 1, app.GlobalFunc1() = %d\n", app.GlobalFunc1())
-
-	//gomonkey.NewPatches().ApplyCore(reflect.ValueOf(app.GlobalFunc1), reflect.ValueOf(MainFunc1))
-	//fmt.Printf("main(), 2, app.GlobalFunc1() = %d\n", app.GlobalFunc1())
 
 	plug, err := plugin.Open("./patch/patch.so")
 	if err != nil {
@@ -40,16 +30,11 @@ func main() {
 
 	patch, ok := symPatch.(PatchInterface)
 	if !ok {
-		fmt.Println("patch not implement PatchInterface")
+		fmt.Println("main(), patch do not implement PatchInterface")
 		os.Exit(3)
 	}
 
-	patch.Patch(func(target, double reflect.Value) { gomonkey.NewPatches().ApplyCore(target, double) })
-	//patch.Patch(func(target, double reflect.Value) {
-	//	//gomonkey.NewPatches().ApplyCore(target, reflect.ValueOf(MainFunc1))
-	//	gomonkey.NewPatches().ApplyCore(reflect.ValueOf(app.GlobalFunc1), reflect.ValueOf(MainFunc1))
-	//})
+	patch.Patch()
 
-	//gomonkey.NewPatches().ApplyCore(reflect.ValueOf(app.GlobalFunc1), reflect.ValueOf(MainFunc1))
-	fmt.Printf("main(), 3, app.GlobalFunc1() = %d\n", app.GlobalFunc1())
+	fmt.Printf("main(), 2, app.GlobalFunc1() = %d\n", app.GlobalFunc1())
 }
