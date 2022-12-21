@@ -28,3 +28,6 @@
 - 多个panic输出会按panic时间排序？
 - 参考 [5.4 panic 和 recover](https://draveness.me/golang/docs/part2-foundation/ch05-keyword/golang-panic-recover/)
 
+### recover:
+- recover的使用，符合预期
+- 相比其他语言的trycatch，recover只能以函数为单位生效
