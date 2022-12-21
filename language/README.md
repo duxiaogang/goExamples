@@ -1,5 +1,12 @@
 
 # language:
+## cc:
+### goversion:
+- 展示go:build goversion的用法
+- 就是限定不让过低的go编译
+
+
+
 ## defer:
 ### sequence:
 - defer只对func有效，或者说func才有作用域
