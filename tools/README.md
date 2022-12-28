@@ -22,6 +22,10 @@ var c = func() int { return 1 }
 - b/c并不直接指向函数，而是指向一个function_value，对应的是一个closure，closure第一个字段一般来说才会指向实际函数
   - 也可以说b/c是一个指向函数的指针的指针
 
+## msgpack:
+### first:
+- msgpack简单用法
+
 ## wire:
 ### first:
 - 简单试用一下wire
