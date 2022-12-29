@@ -16,6 +16,22 @@
 
 
 
+## interface:
+### receiver:
+#### TestChangeObject():
+- receiver为对象，方法中也可以修改对象，只是因为golang的传值，导致修改产生在临时对象上
+
+#### TestSugar():
+- 展示语法糖的生效位置
+  - 方法的对象处生效
+  - 函数参数处无效
+
+#### TestSugar():
+- 使用interface展示对象和其对应的对象指针是否实现了某个receiver为指针的方法
+
+#### interface_test.go:
+
+
 ## linkname:
 - 使用linkname引用非导出函数
 
