@@ -17,6 +17,12 @@
 
 
 ## interface:
+### ieface:
+#### TestIntType():
+- go tool compile -S ./main.go
+- eface结构
+- int也是有类型的
+
 ### receiver:
 #### TestChangeObject():
 - receiver为对象，方法中也可以修改对象，只是因为golang的传值，导致修改产生在临时对象上
