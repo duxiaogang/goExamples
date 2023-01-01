@@ -50,6 +50,17 @@
 - 多个panic输出会按panic时间排序？
 - 参考 [5.4 panic 和 recover](https://draveness.me/golang/docs/part2-foundation/ch05-keyword/golang-panic-recover/)
 
+
+## print:
+### TestPrintfP():
+- "%p"的用法
+- 并不是所有变量都可以%p，只是针对指针，函数，map等特定类型
+  - 这个很蛋疼，谁知道map %p打印的是什么呢
+  - 具体看例子中的注释:
+    - 大致可以分两类，如果带&，则输出变量本身的地址
+    - 如果不带&，则输出变量指向的对象地址
+
+
 ### recover:
 - recover的使用，符合预期
 - 相比其他语言的trycatch，recover只能以函数为单位生效
