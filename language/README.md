@@ -17,6 +17,11 @@
 
 
 ## interface:
+### convI2I:
+- 一个interface转换为另一个interface
+- 次转换并非后面的动态类型转为目标interface，而是真的i2i
+  - 所以是单向的
+
 ### ieface:
 #### TestIntType():
 - go tool compile -S ./main.go
