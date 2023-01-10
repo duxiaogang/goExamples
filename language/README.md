@@ -1,5 +1,9 @@
 
 # language:
+## ast:
+### first:
+- ast的一个最简单例子，有个感性认识吧，具体用到再说
+
 ## cc:
 ### goversion:
 - 展示go:build goversion的用法
@@ -28,6 +32,10 @@
 - eface结构
 - int也是有类型的
 
+### misc:
+#### TestNilInterface():
+- nil interface指的是动态类型和数据都是空，而和interface自身类型无关
+
 ### receiver:
 #### TestChangeObject():
 - receiver为对象，方法中也可以修改对象，只是因为golang的传值，导致修改产生在临时对象上
@@ -37,10 +45,9 @@
   - 方法的对象处生效
   - 函数参数处无效
 
-#### TestSugar():
+#### TestSugar2():
 - 使用interface展示对象和其对应的对象指针是否实现了某个receiver为指针的方法
 
-#### interface_test.go:
 
 
 ## linkname:
