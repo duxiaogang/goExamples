@@ -3,38 +3,28 @@ package main
 import (
 	"fmt"
 	"github.com/duxiaogang/goExamples/hotfix/app"
+	"github.com/duxiaogang/goExamples/hotfix/patch"
 	"os"
-	"plugin"
 )
 
-type PatchInterface interface {
-	Patch()
-}
-
 func main() {
-	fmt.Printf("main(), address of app.GlobalFunc1 = %p\n", app.GlobalFunc1)
-	fmt.Printf("main(), 1, app.GlobalFunc1() = %d\n", app.GlobalFunc1())
+	fmt.Printf("main(), before patch, \tapp.GlobalFunc1()=\"%s\", \tapp.GlobalFunc2()=\"%s\", \tapp.GlobalFunc3()=\"%s\"\n", app.GlobalFunc1(), app.GlobalFunc2(), app.GlobalFunc3())
 
-	plug, err := plugin.Open("./patch/patch.so")
+	pt := &patch.PatchTool{}
+	err := pt.DoPatch("./patch1/patch.so")
 	if err != nil {
-		fmt.Println(err)
+		fmt.Printf("main(), DoPatch(\"patch1\") error, err = %s\n", err)
 		os.Exit(1)
 	}
-	_ = plug
+	fmt.Printf("main(), after patch1, \tapp.GlobalFunc1()=\"%s\", \tapp.GlobalFunc2()=\"%s\", \tapp.GlobalFunc3()=\"%s\"\n", app.GlobalFunc1(), app.GlobalFunc2(), app.GlobalFunc3())
 
-	symPatch, err := plug.Lookup("Patch")
+	err = pt.DoPatch("./patch2/patch.so")
 	if err != nil {
-		fmt.Println(err)
+		fmt.Printf("main(), DoPatch(\"patch2\") error, err = %s\n", err)
 		os.Exit(2)
 	}
+	fmt.Printf("main(), after patch2, \tapp.GlobalFunc1()=\"%s\", \tapp.GlobalFunc2()=\"%s\", \tapp.GlobalFunc3()=\"%s\"\n", app.GlobalFunc1(), app.GlobalFunc2(), app.GlobalFunc3())
 
-	patch, ok := symPatch.(PatchInterface)
-	if !ok {
-		fmt.Println("main(), patch do not implement PatchInterface")
-		os.Exit(3)
-	}
-
-	patch.Patch()
-
-	fmt.Printf("main(), 2, app.GlobalFunc1() = %d\n", app.GlobalFunc1())
+	pt.Reset()
+	fmt.Printf("main(), after reset, \tapp.GlobalFunc1()=\"%s\", \tapp.GlobalFunc2()=\"%s\", \tapp.GlobalFunc3()=\"%s\"\n", app.GlobalFunc1(), app.GlobalFunc2(), app.GlobalFunc3())
 }

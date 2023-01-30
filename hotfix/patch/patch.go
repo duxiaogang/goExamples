@@ -1,34 +1,58 @@
-package main
+package patch
 
 import (
 	"fmt"
-	"github.com/agiledragon/gomonkey/v2"
-	"github.com/duxiaogang/goExamples/hotfix/app"
-	"github.com/duxiaogang/goExamples/hotfix/patch/lookup"
-	"reflect"
+	"plugin"
 )
 
-func ReplacedFunc1() int {
-	return 2
-}
-
 type PatchInterface interface {
-	Patch()
+	Patch() (any, error)
+	Reset(any) error
 }
 
-type patch struct {
+type PatchTool struct {
+	entry   PatchInterface
+	patched any
 }
 
-func (p patch) Patch() {
-	fmt.Printf("patch.Patch(), address of app.GlobalFunc1 = %p\n", app.GlobalFunc1)
-
-	target, err := lookup.MakeValueByFunctionName(app.GlobalFunc1, "github.com/duxiaogang/goExamples/hotfix/app.GlobalFunc1")
+func (p *PatchTool) DoPatch(path string) error {
+	err := p.Reset()
 	if err != nil {
-		fmt.Printf("patch.Patch(), MakeValueByFunctionName error, err = %v\n", err)
-		return
+		return err
 	}
-	fmt.Printf("patch.Patch(), target = 0x%08x\n", target)
-	gomonkey.NewPatches().ApplyCore(target, reflect.ValueOf(ReplacedFunc1))
+
+	plug, err := plugin.Open(path)
+	if err != nil {
+		return err
+	}
+
+	symPatch, err := plug.Lookup("Patch")
+	if err != nil {
+		return err
+	}
+
+	entry, ok := symPatch.(PatchInterface)
+	if !ok {
+		return fmt.Errorf("PatchTool.DoPatch(), plugin do not implement PatchInterface, path = %v", path)
+	}
+
+	patched, err := entry.Patch()
+	if err != nil {
+		return err
+	}
+
+	p.entry = entry
+	p.patched = patched
+	return nil
 }
 
-var Patch patch
+func (p *PatchTool) Reset() error {
+	if p.entry != nil && p.patched != nil {
+		err := p.entry.Reset(p.patched)
+		if err != nil {
+			return err
+		}
+		p.patched = nil
+	}
+	return nil
+}
