@@ -33,18 +33,6 @@ func replacedPrivateFunc1() string {
 	return "patch1's replacedPrivateFunc1()"
 }
 
-//go:linkname privateFunc2 github.com/duxiaogang/goExamples/hotfix/app.privateFunc2
-func privateFunc2() string
-func replacedPrivateFunc2() string {
-	return "patch1's replacedPrivateFunc2()"
-}
-
-//go:linkname privateFunc3 github.com/duxiaogang/goExamples/hotfix/app.privateFunc3
-func privateFunc3() string
-func replacedPrivateFunc3() string {
-	return "patch1's replacedPrivateFunc3()"
-}
-
 //go:linkname createClosure1func1 github.com/duxiaogang/goExamples/hotfix/app.CreateClosure1.func1
 func createClosure1func1() string
 func replacedCreateClosure1func1() string {
@@ -95,16 +83,6 @@ func (p patch1) Patch() (any, error) {
 	}
 	patched.ApplyCore(target, reflect.ValueOf(replacedPrivateFunc1))
 	patched.ApplyCore(reflect.ValueOf(privateFunc1), reflect.ValueOf(replacedPrivateFunc1))
-
-	//replace privateFunc2
-	target, err = lookup.MakeValueByFunctionName(privateFunc2, "github.com/duxiaogang/goExamples/hotfix/app.privateFunc2")
-	if err != nil {
-		return nil, err
-	}
-	patched.ApplyCore(target, reflect.ValueOf(replacedPrivateFunc2))
-	patched.ApplyCore(reflect.ValueOf(privateFunc2), reflect.ValueOf(replacedPrivateFunc2))
-
-	//DONT replace privateFunc3
 
 	//replace CreateClosure1
 	target, err = lookup.MakeValueByFunctionName(createClosure1func1, "github.com/duxiaogang/goExamples/hotfix/app.CreateClosure1.func1")
