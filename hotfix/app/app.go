@@ -22,12 +22,6 @@ func CallPrivateFunc1() string {
 	return privateFunc1()
 }
 
-func CreateClosure1(i int) func() string {
-	return func() string {
-		return fmt.Sprintf("original CreateClosure1(), i=%d", i)
-	}
-}
-
 type Object1 struct {
 }
 
@@ -41,4 +35,10 @@ func (o *Object1) privateMethod1() string {
 
 func (o *Object1) CallPrivateMethod1() string {
 	return o.privateMethod1()
+}
+
+func CreateClosure1(i int) func() string {
+	return func() string {
+		return fmt.Sprintf("original CreateClosure1(), i=%d", i)
+	}
 }

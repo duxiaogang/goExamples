@@ -7,12 +7,12 @@ import (
 	"os"
 )
 
-func test(desc string, f func() string, o *app.Object1) {
+func dump(desc string, o *app.Object1, f func() string) {
 	fmt.Printf("main(), %20s, %50s, %50s, %50s\n", desc, app.GlobalFunc1(), app.GlobalFunc2(), app.GlobalFunc3())
 	fmt.Printf("        %20s  %50s\n", "", app.CallPrivateFunc1())
-	fmt.Printf("        %20s  %50s\n", "", f())
 	fmt.Printf("        %20s  %50s\n", "", o.Method1())
 	fmt.Printf("        %20s  %50s\n", "", o.CallPrivateMethod1())
+	fmt.Printf("        %20s  %50s\n", "", f())
 	fmt.Printf("\n")
 }
 
@@ -20,7 +20,7 @@ func main() {
 	c1 := app.CreateClosure1(1)
 	o := &app.Object1{}
 
-	test("before patch", c1, o)
+	dump("before patch", o, c1)
 
 	pt := &patch.PatchTool{}
 	err := pt.DoPatch("./patch1/patch.so")
@@ -28,15 +28,15 @@ func main() {
 		fmt.Printf("main(), DoPatch(\"patch1\") error, err = %s\n", err)
 		os.Exit(1)
 	}
-	test("after patch1", c1, o)
+	dump("after patch1", o, c1)
 
 	err = pt.DoPatch("./patch2/patch.so")
 	if err != nil {
 		fmt.Printf("main(), DoPatch(\"patch2\") error, err = %s\n", err)
 		os.Exit(2)
 	}
-	test("after patch2", c1, o)
+	dump("after patch2", o, c1)
 
 	pt.Reset()
-	test("after reset", c1, o)
+	dump("after reset", o, c1)
 }

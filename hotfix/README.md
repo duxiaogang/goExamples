@@ -6,4 +6,5 @@
   - 闭包hotfix比较麻烦，主要是环境变量存在问题
 - todo:
   - linux平台
+  - global var hotfix
   - patch过程安全
