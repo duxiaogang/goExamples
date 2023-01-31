@@ -1,5 +1,7 @@
 package app
 
+import "fmt"
+
 func GlobalFunc1() string {
 	return "original GlobalFunc1()"
 }
@@ -34,4 +36,25 @@ func CallPrivateFunc2() string {
 
 func CallPrivateFunc3() string {
 	return privateFunc3()
+}
+
+func CreateClosure1(i int) func() string {
+	return func() string {
+		return fmt.Sprintf("original CreateClosure1(), i=%d", i)
+	}
+}
+
+type Object1 struct {
+}
+
+func (o *Object1) Method1() string {
+	return "original Object1.Method1()"
+}
+
+func (o *Object1) privateMethod1() string {
+	return "original Object1.privateMethod1()"
+}
+
+func (o *Object1) CallPrivateMethod1() string {
+	return o.privateMethod1()
 }

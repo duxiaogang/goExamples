@@ -45,6 +45,28 @@ func replacedPrivateFunc3() string {
 	return "patch1's replacedPrivateFunc3()"
 }
 
+//go:linkname createClosure1func1 github.com/duxiaogang/goExamples/hotfix/app.CreateClosure1.func1
+func createClosure1func1() string
+func replacedCreateClosure1func1() string {
+	return "patch1's replacedCreateClosure1func1()"
+}
+
+//func replacedCreateClosure1(i int) func() string {
+//	return func() string {
+//		return fmt.Sprintf("patch1's replacedCreateClosure1(), i=%d", i)
+//	}
+//}
+
+func replacedObject1Method1(o *app.Object1) string {
+	return "patch1's replacedObject1Method1()"
+}
+
+//go:linkname object1PrivateMethod1 github.com/duxiaogang/goExamples/hotfix/app.(*Object1).privateMethod1
+func object1PrivateMethod1(o *app.Object1) string
+func replacedObject1PrivateMethod1(o *app.Object1) string {
+	return "patch1's replacedObject1PrivateMethod1()"
+}
+
 func (p patch1) Patch() (any, error) {
 	patched := gomonkey.NewPatches()
 
@@ -83,6 +105,30 @@ func (p patch1) Patch() (any, error) {
 	patched.ApplyCore(reflect.ValueOf(privateFunc2), reflect.ValueOf(replacedPrivateFunc2))
 
 	//DONT replace privateFunc3
+
+	//replace CreateClosure1
+	target, err = lookup.MakeValueByFunctionName(createClosure1func1, "github.com/duxiaogang/goExamples/hotfix/app.CreateClosure1.func1")
+	if err != nil {
+		return nil, err
+	}
+	patched.ApplyCore(target, reflect.ValueOf(replacedCreateClosure1func1))
+	patched.ApplyCore(reflect.ValueOf(createClosure1func1), reflect.ValueOf(replacedCreateClosure1func1))
+
+	//replace Object1.Method1
+	target, err = lookup.MakeValueByFunctionName((*app.Object1).Method1, "github.com/duxiaogang/goExamples/hotfix/app.(*Object1).Method1")
+	if err != nil {
+		return nil, err
+	}
+	patched.ApplyCore(target, reflect.ValueOf(replacedObject1Method1))
+	patched.ApplyCore(reflect.ValueOf((*app.Object1).Method1), reflect.ValueOf(replacedObject1Method1))
+
+	//replace Object1.privateMethod1
+	target, err = lookup.MakeValueByFunctionName(object1PrivateMethod1, "github.com/duxiaogang/goExamples/hotfix/app.(*Object1).privateMethod1")
+	if err != nil {
+		return nil, err
+	}
+	patched.ApplyCore(target, reflect.ValueOf(replacedObject1PrivateMethod1))
+	patched.ApplyCore(reflect.ValueOf(object1PrivateMethod1), reflect.ValueOf(replacedObject1PrivateMethod1))
 
 	return patched, nil
 }
