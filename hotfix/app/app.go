@@ -42,3 +42,11 @@ func CreateClosure1(i int) func() string {
 		return fmt.Sprintf("original CreateClosure1(), i=%d", i)
 	}
 }
+
+var GlobalVar1 int = 0
+
+var privateVar1 int = 0
+
+func GetPrivateVar1() int {
+	return privateVar1
+}

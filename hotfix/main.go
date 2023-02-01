@@ -13,6 +13,9 @@ func dump(desc string, o *app.Object1, f func() string) {
 	fmt.Printf("        %20s  %50s\n", "", o.Method1())
 	fmt.Printf("        %20s  %50s\n", "", o.CallPrivateMethod1())
 	fmt.Printf("        %20s  %50s\n", "", f())
+	fmt.Printf("        %20s  %50s, %50s\n", "", fmt.Sprintf("app.GlobalVar1=%d", app.GlobalVar1), fmt.Sprintf("app.privateVar1=%d", app.GetPrivateVar1()))
+	fmt.Printf("\n")
+	fmt.Printf("\n")
 	fmt.Printf("\n")
 }
 

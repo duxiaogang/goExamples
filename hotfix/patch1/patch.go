@@ -55,6 +55,9 @@ func replacedCreateClosure1func1() string {
 //	}
 //}
 
+//go:linkname privateVar1 github.com/duxiaogang/goExamples/hotfix/app.privateVar1
+var privateVar1 int
+
 func (p patch1) Patch() (any, error) {
 	patched := gomonkey.NewPatches()
 
@@ -107,6 +110,12 @@ func (p patch1) Patch() (any, error) {
 	}
 	patched.ApplyCore(target, reflect.ValueOf(replacedCreateClosure1func1))
 	patched.ApplyCore(reflect.ValueOf(createClosure1func1), reflect.ValueOf(replacedCreateClosure1func1))
+
+	//replace GlobalVar1
+	patched.ApplyGlobalVar(&app.GlobalVar1, 1)
+
+	//replace privateVar1
+	patched.ApplyGlobalVar(&privateVar1, 1)
 
 	return patched, nil
 }

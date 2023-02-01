@@ -27,6 +27,9 @@ func ReplacedFunc3() string {
 	return "patch2's ReplacedFunc3()"
 }
 
+//go:linkname privateVar1 github.com/duxiaogang/goExamples/hotfix/app.privateVar1
+var privateVar1 int
+
 func (p patch2) Patch() (any, error) {
 	patched := gomonkey.NewPatches()
 
@@ -47,6 +50,12 @@ func (p patch2) Patch() (any, error) {
 	}
 	patched.ApplyCore(target, reflect.ValueOf(ReplacedFunc3))
 	patched.ApplyCore(reflect.ValueOf(app.GlobalFunc3), reflect.ValueOf(ReplacedFunc3))
+
+	//replace GlobalVar1
+	patched.ApplyGlobalVar(&app.GlobalVar1, 2)
+
+	//replace privateVar1
+	patched.ApplyGlobalVar(&privateVar1, 2)
 
 	return patched, nil
 }
