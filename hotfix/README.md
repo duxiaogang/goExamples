@@ -9,6 +9,6 @@
       - 确实如此，在app/so中分别打印看，地址是一致的
       - 虽然nm静态去看存在两个实例
       - 但是在load plugin的时候，so中的会没地方用到？
+  - mac+linux平台
 - todo:
-  - linux平台
   - patch过程安全
