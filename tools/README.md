@@ -26,6 +26,10 @@ var c = func() int { return 1 }
 ### first:
 - msgpack简单用法
 
+## trace:
+### first:
+- 使用trace的例子，用来观察goroutine在GMP中执行情况
+
 ## wire:
 ### first:
 - 简单试用一下wire
