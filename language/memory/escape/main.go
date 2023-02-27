@@ -100,7 +100,7 @@ func main() {
 
 	d := S(1)
 	x := d + 1
-	fmt.Println(x) //x为何会逃逸？
+	fmt.Println(x) //x为何会逃逸？ 有文章说和Println内部实现有关系，其实有点奇怪，可能还和interface{}有关系吧？不明白
 
 	e := new(S)
 	y := *e + 1
