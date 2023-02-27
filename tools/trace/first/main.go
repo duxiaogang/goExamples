@@ -40,4 +40,6 @@ func main() {
 		go busy(ctx)
 	}
 	busy(ctx)
+
+	time.Sleep(1 * time.Second)
 }

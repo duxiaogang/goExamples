@@ -12,3 +12,4 @@
   - mac+linux平台
 - todo:
   - patch过程安全
+  - text cache一致性
