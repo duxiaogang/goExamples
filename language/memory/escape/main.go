@@ -110,7 +110,17 @@ func main() {
 	z := f.m4.m4.m4.m4.m4.m4.m4.l + 1
 	fmt.Println(unsafe.Sizeof(f), z)
 
-	g := S12{} //sizeof(g)~=130m, 很慢，此时反编译显示调用了newobject, 但是-m显示没有逃逸？为什么会有这个差别？
-	u := g.m4.m4.m4.m4.m4.m4.m4.m4.m4.m4.m4.l + 1
-	fmt.Println(unsafe.Sizeof(g), u)
+	//g := S12{} //sizeof(g)~=130m, 很慢，此时反编译显示调用了newobject, 但是-m显示没有逃逸？为什么会有这个差别？
+	//u := g.m4.m4.m4.m4.m4.m4.m4.m4.m4.m4.m4.l + 1
+	//fmt.Println(unsafe.Sizeof(g), u)
+
+	h := make([]int, 10, 10)
+	for i, _ := range h {
+		h[i] = i
+	}
+
+	l := make([]int, 1000000, 1000000)
+	for i, _ := range l {
+		l[i] = i
+	}
 }
