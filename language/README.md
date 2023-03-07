@@ -85,3 +85,11 @@
 ### recover:
 - recover的使用，符合预期
 - 相比其他语言的trycatch，recover只能以函数为单位生效
+
+
+## time:
+### tick:
+- tick的工作机制：
+  - 创建一个cap为1的channel，然后每tick尝试写入当前时间
+    - non-blocking方式写入，chan满则跳过，下个tick再尝试
+  - 也就是说，tick丢了就丢了，不存在累积
