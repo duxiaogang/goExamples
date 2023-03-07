@@ -34,7 +34,7 @@ func main() {
 	log.Printf("begin, len(m)=%v\n", len(m))
 
 	tickCh := time.Tick(10 * time.Millisecond)
-	endCh := time.After(3600 * time.Second)
+	endCh := time.After(2 * 3600 * time.Second)
 	start := time.Now()
 	prev := start
 	for {
