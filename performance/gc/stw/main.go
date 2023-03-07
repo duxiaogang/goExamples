@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"math/rand"
+	_ "net/http/pprof"
 	"strconv"
 	"time"
 )
@@ -30,6 +31,10 @@ func tick(start, prev, now time.Time, m map[int]string) {
 }
 
 func main() {
+	//go func() {
+	//	log.Println(http.ListenAndServe("localhost:6060", nil))
+	//}()
+
 	m := doAlloc(200)
 	log.Printf("begin, len(m)=%v\n", len(m))
 
