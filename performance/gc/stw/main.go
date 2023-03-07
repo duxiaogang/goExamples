@@ -2,8 +2,17 @@ package main
 
 import (
 	"log"
+	"strconv"
 	"time"
 )
+
+func doAlloc() map[int]string {
+	m := make(map[int]string)
+	for i := 0; i < 1000000*1000; i++ {
+		m[i] = strconv.FormatInt(int64(i), 10)
+	}
+	return m
+}
 
 func tick(start, prev, now time.Time) {
 	//log.Printf("tick, now=%f, t=%f\n", float64(time.Now().UnixMilli())/1000, float64(t.UnixMilli())/1000)
@@ -13,6 +22,9 @@ func tick(start, prev, now time.Time) {
 }
 
 func main() {
+	m := doAlloc()
+	log.Printf("len(m)=%v\n", len(m))
+
 	ch := time.Tick(10 * time.Millisecond)
 	start := time.Now()
 	prev := start
