@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"log"
 	"math/rand"
 	_ "net/http/pprof"
@@ -29,18 +28,32 @@ func alloc(len int) any {
 }
 
 func cpu(d time.Duration) (r uint64) {
-	ctx, _ := context.WithTimeout(context.Background(), d)
-	done := ctx.Done()
+	/*
+		ctx, _ := context.WithTimeout(context.Background(), d)
+		done := ctx.Done()
+		r = 0
+		for i := uint64(0); i < 1000000; i++ {
+			for j := uint64(0); j < 1000000; j++ {
+				select {
+				case <-done:
+					return
+				default:
+				}
+				for k := uint64(0); k < 1000000; k++ {
+					r++
+				}
+			}
+		}
+	*/
+	N := uint64(float64(d) * 1.95)
 	r = 0
 	for i := uint64(0); i < 1000000; i++ {
 		for j := uint64(0); j < 1000000; j++ {
-			select {
-			case <-done:
-				return
-			default:
-			}
 			for k := uint64(0); k < 1000000; k++ {
 				r++
+				if r >= N {
+					return
+				}
 			}
 		}
 	}
@@ -54,7 +67,7 @@ func doWork() {
 		alloc(rand.Int() % 1000)
 	}
 	//cpu
-	//cpu(time.Duration(rand.Int()%10) * time.Millisecond)
+	cpu(time.Duration(rand.Int()%1000) * time.Microsecond)
 }
 
 func worker() {
@@ -90,6 +103,11 @@ func main() {
 	//go func() {
 	//	log.Println(http.ListenAndServe("localhost:6060", nil))
 	//}()
+
+	//log.Println(time.Now().UnixMilli())
+	//cpu(1 * time.Second)
+	//log.Println(time.Now().UnixMilli())
+	//return
 
 	m := prepare(200)
 
