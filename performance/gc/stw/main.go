@@ -28,24 +28,8 @@ func alloc(len int) any {
 }
 
 func cpu(d time.Duration) (r uint64) {
-	/*
-		ctx, _ := context.WithTimeout(context.Background(), d)
-		done := ctx.Done()
-		r = 0
-		for i := uint64(0); i < 1000000; i++ {
-			for j := uint64(0); j < 1000000; j++ {
-				select {
-				case <-done:
-					return
-				default:
-				}
-				for k := uint64(0); k < 1000000; k++ {
-					r++
-				}
-			}
-		}
-	*/
-	N := uint64(float64(d) * 1.95)
+	//N := uint64(float64(d) * 1.95) //for mac, i7-8850h
+	N := uint64(float64(d) * 3.25) //for pc, i7-10700k
 	r = 0
 	for i := uint64(0); i < 1000000; i++ {
 		for j := uint64(0); j < 1000000; j++ {
@@ -109,7 +93,7 @@ func main() {
 	//log.Println(time.Now().UnixMilli())
 	//return
 
-	m := prepare(200)
+	m := prepare(100)
 
 	startWorker(6000)
 
