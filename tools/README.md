@@ -26,6 +26,15 @@ var c = func() int { return 1 }
 ### first:
 - msgpack简单用法
 
+
+
+## race:
+### happensBefore:
+- 名字起的不太好，据说race不止happens-before, 是lockset和happens-before的混合
+- race确实会有漏报，比如这个例子，但具体为何，我没看出来原因
+
+
+
 ## trace:
 ### first:
 - 使用trace的例子，用来观察goroutine在GMP中执行情况

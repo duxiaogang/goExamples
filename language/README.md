@@ -4,10 +4,22 @@
 ### first:
 - ast的一个最简单例子，有个感性认识吧，具体用到再说
 
+
+
+## atomic:
+- atomic是lock操作，对应有lock总线指令
+- 而全局变量则不然
+
+
 ## cc:
 ### goversion:
 - 展示go:build goversion的用法
 - 就是限定不让过低的go编译
+
+
+
+## cycleImport:
+- 循环引用的解决办法
 
 
 
