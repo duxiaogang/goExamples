@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-const N = 1000000000
+const N = 100 * 1000 * 1000
 
 type X struct {
 	i, j, k int64
@@ -17,9 +17,9 @@ func main() {
 	var arr [N]X
 
 	wg := sync.WaitGroup{}
-	wg.Add(5)
+	wg.Add(4)
 
-	go func() {
+	go func(index int) {
 		for i := 0; i < N; i++ {
 			x := &arr[i]
 			x.i = 1
@@ -28,16 +28,16 @@ func main() {
 			x.f = true
 		}
 		wg.Done()
-		fmt.Println("1 done")
-	}()
+		fmt.Printf("%d done\n", index)
+	}(1)
 
-	f := func() {
+	f := func(index int) {
 		for i := 0; i < N; {
 			for {
 				if arr[i].f {
 					x := &arr[i]
 					if x.i+x.j+x.k != 6 {
-						fmt.Println("error")
+						fmt.Printf("%d error\n", index)
 					}
 					break
 				}
@@ -45,13 +45,12 @@ func main() {
 			i++
 		}
 		wg.Done()
-		fmt.Println("2 done")
+		fmt.Printf("%d done\n", index)
 	}
-	go f()
-	go f()
-	go f()
+	go f(2)
+	go f(3)
+	go f(4)
 
 	wg.Wait()
-	fmt.Println("3 done")
 	time.Sleep(time.Millisecond)
 }
