@@ -71,6 +71,16 @@
   - 但为什么slice引用的其他单元就会逃逸呢？
 
 
+### model:
+#### 1:
+- channel的happens-before关系
+
+#### 2:
+- 试试乱序，发现几乎不可能出现
+
+
+
+
 ## linkname:
 - 使用linkname引用非导出函数
 
