@@ -8,10 +8,6 @@ import (
 
 const N = 100 * 1000 * 1000
 
-type X struct {
-	i, j, k int64
-}
-
 func main() {
 	var arrI [N]int64
 	var arrJ [N]int64
