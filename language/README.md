@@ -86,6 +86,12 @@
 
 
 
+## map:
+### rmInRange:
+- 在range遍历时delete map成员安全吗？
+  - 尚未有结论
+
+
 ## panic:
 ### nest:
 - panic的输出总在最后？
