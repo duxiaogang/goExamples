@@ -32,6 +32,36 @@
 
 
 
+## function:
+### call:
+- 看看golang function call的细节
+- call指令到底做了哪些工作？
+  - 1，把call之后要执行的指定的地址压栈
+  - 2，然后jump到被call函数的初始位置
+  - bp/sp都不会特意去做任何调整
+  > 当我们准备好函数的入参之后，会调用汇编指令 CALL "".myFunction(SB)，这个指令首先会将 main 的返回地址存入栈中，然后改变当前的栈指针 SP 并执行 myFunction 的汇编指令：
+- ret呢，做了哪些工作？
+  - 和call正好相反
+  - 返回结果放在了被call函数的stack上？
+    - 看编译器吧，没啥隐藏工作，都能通过生成的汇编看出来
+- golang和c的主要差别，stack要给返回值留够空间
+  - 其实返回值相当于引用，没啥差别，而且go新版本都不使用stack传参传结果了
+    - 在这个文章的golang版本中，传参还是用的stack
+      - 但go1.19实测，显然是使用寄存器传参的，返回值也是的
+        - 当然，参数/返回值多了估计也只能使用stack
+- 进入函数和离开函数前，需要保证bp/sp不变
+  - bp/sp的调整全靠compiler生成的代码
+- LEAQ？
+  - 纯粹的计算指令，和取址完全无关
+- PCDATA/FUNCDATA？
+  - 不用管，go tool objdump -S避免之？
+    - 少用go tool compile -S吧
+- 没看懂为什么要多分一点栈出来，因为call了别的函数？给retaddr留位置？
+  - 实验看，确实如此
+- 如果发生了stack迁移，才会把register中的参数挪到stack上，之后再恢复
+- 如果没有临时变量等，就可能没有stack操作，这种最轻松了
+
+
 ## interface:
 ### convI2I:
 - 一个interface转换为另一个interface
