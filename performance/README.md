@@ -41,5 +41,9 @@
 
 
 
+## map:
+#### op_test.go:
+- map range性能与cap线性相关
+
 
 

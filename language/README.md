@@ -18,6 +18,10 @@
 
 
 
+## const:
+- iota的用法
+
+
 ## cycleImport:
 - 循环引用的解决办法
 
@@ -123,6 +127,13 @@
 ### rmInRange:
 - 在range遍历时delete map成员安全吗？
   - 尚未有结论
+
+
+
+## oo:
+#### methodNum:
+- 有名继承和无名集成的区别，真的不一样
+
 
 
 ## panic:
