@@ -1,0 +1,21 @@
+(base) duxg@BJNLPC0609:/usr/local/go/src/runtime$ diff runtime2.go runtime2.go.bak
+506d505
+<       infloopCounter int64
+(base) duxg@BJNLPC0609:/usr/local/go/src/runtime$ diff preempt.go preempt.go.bak
+311,324d310
+<       infloopCheck(gp)
+< }
+<
+< //go:nosplit
+< func infloopCheck(gp *g) {
+<       gp.infloopCounter--
+<       if gp.infloopCounter < 0 {
+<               panic("infloop?")
+<       }
+< }
+<
+< func ResetInfloopChecker(count int64) {
+<       gp := getg()
+<       gp.infloopCounter = count
+(base) duxg@BJNLPC0609:/usr/local/go/src/runtime$ go version
+go version go1.19.5 linux/amd64
