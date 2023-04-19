@@ -1,5 +1,10 @@
 
 # performance:
+## array:
+### d1:
+- 访问1维数组的开销
+
+
 ## asm:
 
 
