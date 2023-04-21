@@ -2,33 +2,49 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"sync"
 	"time"
 )
 
 const N = 100 * 1000 * 1000
 
-var arrI [N]int64
-var arrJ [N]int64
-var arrK [N]int64
+var arrI [2 * N]int32
+var arrJ [2 * N]int32
+var arrK [2 * N]int32
 var flags [N]bool
 
-func f1(wg *sync.WaitGroup, index int) {
+func writeGr(wg *sync.WaitGroup, index int) {
+	runtime.LockOSThread()
 	for i := 0; i < N; i++ {
-		arrI[i] = 1
-		arrJ[i] = 2
-		arrK[i] = 3
+		arrI[2*i] = 1
+		arrJ[2*i] = 2
+		arrK[2*i] = 3
 		flags[i] = true
 	}
 	wg.Done()
 	fmt.Printf("%d done\n", index)
 }
 
-func f2(wg *sync.WaitGroup, index int) {
-	for i := 0; i < N; {
+func troubleGr(offset int) {
+	for {
+		for i := 0; i < N; i++ {
+			p := offset + i
+			if p >= N {
+				p -= N
+			}
+			arrI[2*p+1] = int32(i)
+			arrJ[2*p+1] = int32(i)
+			arrK[2*p+1] = int32(i)
+		}
+	}
+}
+
+func readGr(wg *sync.WaitGroup, index, offset int) {
+	for i := offset; i < N; {
 		for {
 			if flags[i] {
-				if arrI[i]+arrJ[i]+arrK[i] != 6 {
+				if arrI[2*i]+arrJ[2*i]+arrK[2*i] != 6 {
 					fmt.Printf("%d error\n", index)
 				}
 				break
@@ -46,12 +62,19 @@ func main() {
 	bt := time.Now()
 
 	wg.Add(1)
-	go f1(&wg, 1)
+	go writeGr(&wg, 1)
 
-	wg.Add(3)
-	go f2(&wg, 2)
-	go f2(&wg, 3)
-	go f2(&wg, 4)
+	go troubleGr(0 * (N / 4))
+	//go troubleGr(1 * (N / 4))
+	go troubleGr(2 * (N / 4))
+	//go troubleGr(3 * (N / 4))
+
+	wg.Add(1)
+	go readGr(&wg, 2, 1*1000*1000)
+	wg.Add(1)
+	go readGr(&wg, 3, 2*1000*1000)
+	wg.Add(1)
+	go readGr(&wg, 4, 3*1000*1000)
 
 	wg.Wait()
 

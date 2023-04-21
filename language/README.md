@@ -18,6 +18,13 @@
 
 
 
+## channel:
+### nilChannel:
+- nil channel会导致无限等待
+- 读closed channel会直接返回0
+- ...
+
+
 ## const:
 - iota的用法
 
@@ -64,6 +71,17 @@
   - 实验看，确实如此
 - 如果发生了stack迁移，才会把register中的参数挪到stack上，之后再恢复
 - 如果没有临时变量等，就可能没有stack操作，这种最轻松了
+
+
+
+## goroutine:
+### cpu100:
+
+### preempt:
+- 测试防止死循环的例子，未完成，迁移到别处
+
+### stack:
+- 测试防止死循环的例子，未完成，迁移到别处
 
 
 ## interface:

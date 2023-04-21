@@ -6,7 +6,7 @@ import (
 )
 
 const SIZE = 1000 * 1000 * 1000
-const RANGE = 1000 * 1000 * 1000
+const RANGE = 1 * 1000 * 1000
 const COUNT = 1 * 1000 * 1000
 
 func main() {

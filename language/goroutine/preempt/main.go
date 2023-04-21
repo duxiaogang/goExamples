@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"runtime"
 	"time"
 )
 
@@ -12,13 +11,13 @@ func makeStackBigger(size int) {
 	if size == 0 {
 		return
 	}
-	makeStackBigger(size-1)
+	makeStackBigger(size - 1)
 }
 
 func worker(index int) {
 	makeStackBigger(1000)
 	for {
-		runtime.ResetInfloopChecker(100)
+		//runtime.ResetInfloopChecker(100)
 		if index < 97 {
 			normal(index)
 		} else {
@@ -58,11 +57,14 @@ func main() {
 		go worker(i)
 	}
 
-	ch := time.Tick(1 * time.Second)
-	for {
-		select {
-		case <-ch:
-			fmt.Println(data)
-		}
+	//ch := time.Tick(1 * time.Second)
+	//for {
+	//	select {
+	//	case <-ch:
+	//		fmt.Println(data)
+	//	}
+	//}
+	for range time.Tick(1 * time.Second) {
+		fmt.Println(data)
 	}
 }
