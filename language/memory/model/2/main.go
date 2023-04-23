@@ -41,7 +41,7 @@ func troubleGr(offset int) {
 }
 
 func readGr(wg *sync.WaitGroup, index, offset int) {
-	for i := offset; i < N; {
+	for i := offset; i < N; i++ {
 		for {
 			if flags[i] {
 				if arrI[2*i]+arrJ[2*i]+arrK[2*i] != 6 {
@@ -50,7 +50,6 @@ func readGr(wg *sync.WaitGroup, index, offset int) {
 				break
 			}
 		}
-		i++
 	}
 	wg.Done()
 	fmt.Printf("%d done\n", index)
