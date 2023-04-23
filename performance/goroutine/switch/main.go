@@ -7,8 +7,8 @@ import (
 )
 
 const (
-	maxValue    = 10 * 1000
-	threadCount = 1000
+	maxValue    = 100 * 1000
+	threadCount = 10 * 1000
 )
 
 var curValue int
@@ -27,6 +27,9 @@ func tFunc(i int, cv *sync.Cond, wg *sync.WaitGroup) {
 			break
 		}
 		curValue++
+		if curValue%100 == 0 {
+			fmt.Printf("curValue=%d\n", curValue)
+		}
 		cv.L.Unlock()
 		cv.Broadcast() //cv.Signal()
 	}

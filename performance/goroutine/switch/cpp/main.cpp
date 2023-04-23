@@ -6,8 +6,8 @@
 
 #include "timer.h"
 
-const int maxValue	= 10 * 1000;
-const int threadCount	= 1000;
+const int maxValue	= 100 * 1000;
+const int threadCount	= 10 * 1000;
 
 std::mutex mtx;
 std::condition_variable cv;
@@ -25,7 +25,9 @@ void tFunc(int i)
 			break;
 		}
 		curValue++;
-		//printf("curValue=%d\n", curValue);
+        if (curValue % 100 == 0) {
+            printf("curValue=%d\n", curValue);
+        }
 		cv.notify_all();
 	}
 }
