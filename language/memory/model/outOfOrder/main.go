@@ -12,15 +12,15 @@ var a, b, x, y int
 func f1(wg *sync.WaitGroup) {
 	defer wg.Done()
 
-	var arr1 [N]int
+	//var arr1 [N]int
 
 	a = 1
 
 	//var i int64
 	//atomic.AddInt64(&i, 1)
-	for i := 0; i < N; i++ {
-		arr1[i] += arr1[(i+N-1)%N] + a + x
-	}
+	//for i := 0; i < N; i++ {
+	//	arr1[i] += arr1[(i+N-1)%N] + a + x
+	//}
 
 	x = b
 }
@@ -28,15 +28,15 @@ func f1(wg *sync.WaitGroup) {
 func f2(wg *sync.WaitGroup) {
 	defer wg.Done()
 
-	var arr2 [N]int
+	//var arr2 [N]int
 
 	b = 1
 
 	//var i int64
 	//atomic.AddInt64(&i, 1)
-	for i := 0; i < N; i++ {
-		arr2[i] += arr2[(i+N-1)%N] + b + y
-	}
+	//for i := 0; i < N; i++ {
+	//	arr2[i] += arr2[(i+N-1)%N] + b + y
+	//}
 
 	y = a
 }
