@@ -4,8 +4,25 @@ import (
 	"fmt"
 	"runtime"
 	"sync"
+	"sync/atomic"
 	"time"
 )
+
+func makeStackBigger(count int) {
+	if count == 0 {
+		return
+	}
+	makeStackBigger(count - 1)
+}
+
+func _nosplit() {
+	makeStackBigger(1000 * 1000)
+}
+
+//go:nosplit
+func nosplit() {
+	_nosplit()
+}
 
 func normal() {
 	time.Sleep(1 * time.Second)
@@ -41,14 +58,14 @@ func lock2(a, b *sync.Mutex) {
 	defer b.Unlock()
 }
 
-func SetOOCChecker(checker func()) {
-}
+var oocTick int32
+var stopZero int
+var stopR int
 
-func makeStackBigger(count int) {
-	if count == 0 {
-		return
+func oocTickGr() {
+	for range time.Tick(1 * time.Second) {
+		atomic.AddInt32(&oocTick, 1)
 	}
-	makeStackBigger(count - 1)
 }
 
 func task(f func(), fName string) {
@@ -60,10 +77,12 @@ func task(f func(), fName string) {
 
 	//set ooc checker
 	runtime.SetOOCChecker(func() func() {
-		util := time.Now().Add(3 * time.Second)
+		util := atomic.LoadInt32(&oocTick) + 3
 		return func() {
-			if time.Now().After(util) {
-				panic("OOC!")
+			now := atomic.LoadInt32(&oocTick)
+			if now > util {
+				//panic("OOC!")
+				stopR = 1 / stopZero
 			}
 		}
 	}())
@@ -77,7 +96,7 @@ func task(f func(), fName string) {
 func workerGr(wg *sync.WaitGroup, f func(), fName string) {
 	defer wg.Done()
 
-	makeStackBigger(100)
+	//makeStackBigger(100)
 
 	for {
 		task(f, fName)
@@ -87,29 +106,34 @@ func workerGr(wg *sync.WaitGroup, f func(), fName string) {
 func main() {
 	wg := &sync.WaitGroup{}
 
+	//nosplit()
+
 	wg.Add(1)
-	go workerGr(wg, normal, "normal")
+	go oocTickGr()
+
+	//wg.Add(1)
+	//go workerGr(wg, normal, "normal")
 
 	wg.Add(1)
 	go workerGr(wg, infLoop, "infLoop")
 
-	wg.Add(1)
-	go workerGr(wg, readNilChan, "readNilChan")
+	//wg.Add(1)
+	//go workerGr(wg, readNilChan, "readNilChan")
 
-	wg.Add(1)
-	go workerGr(wg, writeNilChan, "writeNilChan")
+	//wg.Add(1)
+	//go workerGr(wg, writeNilChan, "writeNilChan")
 
-	wg.Add(1)
-	go workerGr(wg, longSleep, "longSleep")
+	//wg.Add(1)
+	//go workerGr(wg, longSleep, "longSleep")
 
-	l1, l2 := func() (func(), func()) {
-		a := &sync.Mutex{}
-		b := &sync.Mutex{}
-		return func() { lock2(a, b) }, func() { lock2(b, a) }
-	}()
-	wg.Add(2)
-	go workerGr(wg, l1, "deadlock1")
-	go workerGr(wg, l2, "deadlock2")
+	//l1, l2 := func() (func(), func()) {
+	//	a := &sync.Mutex{}
+	//	b := &sync.Mutex{}
+	//	return func() { lock2(a, b) }, func() { lock2(b, a) }
+	//}()
+	//wg.Add(2)
+	//go workerGr(wg, l1, "deadlock1")
+	//go workerGr(wg, l2, "deadlock2")
 
 	wg.Wait()
 }
