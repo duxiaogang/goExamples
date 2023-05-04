@@ -142,6 +142,9 @@
 
 #### cacheline:
 - 两个thread都在写同一个cacheline中的不同位置，怎么会结果对呢？
+  - 不懂
+  - 并且，通过perf stat看，cache miss也很低，太奇怪了，就像cacheline size是8byte一样
+  - 增加了c++版本，优化太离谱了，只好关掉优化
 
 
 
