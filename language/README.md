@@ -140,6 +140,8 @@
 - 乱序实例
   - 很容易出现，原因是amd64平台恰好仅支持store before load的乱序，即改写成先load后store
 
+#### cacheline:
+- 两个thread都在写同一个cacheline中的不同位置，怎么会结果对呢？
 
 
 
