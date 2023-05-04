@@ -18,9 +18,11 @@ func main() {
 
 	fmt.Printf("i64=%v, a64=%v\n", i64, a64)
 
-	i := i64
-	fmt.Printf("i=%v\n", i)
+	atomic.StoreInt64(&i64, 100) //lock(xchg), 保证写入内存，而不是storebuffer
 
-	i = a64.Load() //这里只有一次访存，所以不需要lock，和读取全局变量是一样的
-	fmt.Printf("i=%v\n", i)
+	a64.Store(101) //lock， 同上
+
+	i := a64.Load() //这里只有mov并没有lock, 和读取全局变量是一样的，但感觉不太对啊，没有内存屏障，如何刷新缓存的invalidate queue？amd64没有invalidate queue？
+
+	fmt.Printf("i64=%v, a64=%v, i=%v\n", i64, a64, i)
 }

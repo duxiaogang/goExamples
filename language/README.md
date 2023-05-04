@@ -9,6 +9,10 @@
 ## atomic:
 - atomic是lock操作，对应有lock总线指令
 - 而全局变量则不然
+- i := a64.Load() 
+  - 这里只有mov并没有lock, 和读取全局变量是一样的，感觉不太对啊，没有内存屏障如何刷新缓存的invalidate queue？还是说amd64没有invalidate queue？
+    - golang的问题？
+      - c++看起来也是如此，不懂
 
 
 ## cc:
