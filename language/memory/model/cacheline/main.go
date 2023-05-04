@@ -5,32 +5,26 @@ import (
 	"sync"
 )
 
-var i1, i2 int
+var i1, i2, i3, i4 int
 
-func f1(wg *sync.WaitGroup) {
+func f(wg *sync.WaitGroup, pI *int) {
 	defer wg.Done()
 
-	for i := 0; i < 10*1000*1000*1000; i++ {
-		i1++
-	}
-}
-
-func f2(wg *sync.WaitGroup) {
-	defer wg.Done()
-
-	for i := 0; i < 10*1000*1000*1000; i++ {
-		i2++
+	for i := 0; i < 4*1000*1000*1000; i++ {
+		*pI++
 	}
 }
 
 func main() {
 	wg := &sync.WaitGroup{}
 
-	wg.Add(2)
-	go f1(wg)
-	go f2(wg)
+	wg.Add(4)
+	go f(wg, &i1)
+	go f(wg, &i2)
+	go f(wg, &i3)
+	go f(wg, &i4)
 	wg.Wait()
 
-	fmt.Printf("&i1=%p, &i2=%p\n", &i1, &i2)
-	fmt.Printf("i1=%v, i2=%v\n", i1, i2)
+	fmt.Printf("&i1=%p, &i2=%p, &i3=%p, &i4=%p\n", &i1, &i2, &i3, &i4)
+	fmt.Printf("i1=%v, i2=%v, i3=%v, i4=%v\n", i1, i2, i3, i4)
 }
