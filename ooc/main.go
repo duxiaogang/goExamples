@@ -59,8 +59,6 @@ func lock2(a, b *sync.Mutex) {
 }
 
 var oocTick int32
-var stopZero int
-var stopR int
 
 func oocTickGr() {
 	for range time.Tick(1 * time.Second) {
@@ -77,12 +75,12 @@ func task(f func(), fName string) {
 
 	//set ooc checker
 	runtime.SetOOCChecker(func() func() {
-		util := atomic.LoadInt32(&oocTick) + 3
+		util := atomic.LoadInt32(&oocTick) + 1
 		return func() {
+			//makeStackBigger(1000)
 			now := atomic.LoadInt32(&oocTick)
 			if now > util {
-				//panic("OOC!")
-				stopR = 1 / stopZero
+				panic("OOC!")
 			}
 		}
 	}())
@@ -95,8 +93,6 @@ func task(f func(), fName string) {
 
 func workerGr(wg *sync.WaitGroup, f func(), fName string) {
 	defer wg.Done()
-
-	//makeStackBigger(100)
 
 	for {
 		task(f, fName)
