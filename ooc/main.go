@@ -29,6 +29,9 @@ func normal() {
 }
 
 func infLoop() {
+	defer fmt.Println("infLoop end")
+	//defer makeStackBigger(1000)
+
 	for {
 	}
 }
@@ -61,8 +64,8 @@ func lock2(a, b *sync.Mutex) {
 var oocTick int32
 
 func oocTickGr() {
-	for range time.Tick(1 * time.Second) {
-		atomic.AddInt32(&oocTick, 1)
+	for range time.Tick(10 * time.Millisecond) {
+		atomic.AddInt32(&oocTick, 10)
 	}
 }
 
@@ -75,7 +78,7 @@ func task(f func(), fName string) {
 
 	//set ooc checker
 	runtime.SetOOCChecker(func() func() {
-		util := atomic.LoadInt32(&oocTick) + 1
+		util := atomic.LoadInt32(&oocTick) + 1000
 		return func() {
 			//makeStackBigger(1000)
 			now := atomic.LoadInt32(&oocTick)
@@ -110,8 +113,11 @@ func main() {
 	//wg.Add(1)
 	//go workerGr(wg, normal, "normal")
 
-	wg.Add(1)
-	go workerGr(wg, infLoop, "infLoop")
+	N := 1
+	wg.Add(N)
+	for i := 0; i < N; i++ {
+		go workerGr(wg, infLoop, "infLoop")
+	}
 
 	//wg.Add(1)
 	//go workerGr(wg, readNilChan, "readNilChan")
