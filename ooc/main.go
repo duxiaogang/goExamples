@@ -29,8 +29,8 @@ func normal() {
 }
 
 func infLoop() {
+	defer makeStackBigger(1000 * 1000)
 	defer fmt.Println("infLoop end")
-	//defer makeStackBigger(1000)
 
 	for {
 	}
@@ -61,33 +61,25 @@ func lock2(a, b *sync.Mutex) {
 	defer b.Unlock()
 }
 
-var oocTick int32
+var oocTick uint64
 
 func oocTickGr() {
 	for range time.Tick(10 * time.Millisecond) {
-		atomic.AddInt32(&oocTick, 10)
+		atomic.AddUint64(&oocTick, 10)
 	}
 }
 
 func task(f func(), fName string) {
 	defer func() {
 		if e := recover(); e != nil {
+			makeStackBigger(1000 * 1000)
 			fmt.Printf("task(%s) error, e = %v\n", fName, e)
 		}
 	}()
 
-	//set ooc checker
-	runtime.SetOOCChecker(func() func() {
-		util := atomic.LoadInt32(&oocTick) + 1000
-		return func() {
-			//makeStackBigger(1000)
-			now := atomic.LoadInt32(&oocTick)
-			if now > util {
-				panic("OOC!")
-			}
-		}
-	}())
-	defer runtime.SetOOCChecker(nil)
+	//enable ooc
+	runtime.EnableOOC(&oocTick, 1000)
+	defer runtime.DisableOOC()
 
 	fmt.Printf("task(%s) start\n", fName)
 	f()
