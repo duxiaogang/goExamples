@@ -3,6 +3,11 @@
 goSrcDir="/usr/local/Cellar/go/1.19.8/src"
 runtimeDir="$goSrcDir/runtime"
 
+if [ ! -d $runtimeDir ]; then
+	echo "wrong dir!"
+	exit 99
+fi
+
 # original files, from go1.19.8
 # 540500cd1e95bfb2125e0ca39e6cadd5  preempt.go
 # 34a802efc47d03e2913f6e8820a98422  preempt_amd64.s
