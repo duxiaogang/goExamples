@@ -141,7 +141,11 @@ panic:
 
 TEXT ·asmCheckOOC(SB),NOSPLIT,$0-0
 	XORPS X15, X15
+#ifdef GOOS_darwin
+        MOVQ 0x30(GS), R14
+#else
         MOVQ -8(FS), R14
+#endif
         MOVQ 0x188(R14), CX
         TESTQ CX, CX
         JE return0
