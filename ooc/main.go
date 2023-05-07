@@ -15,15 +15,6 @@ func makeStackBigger(count int) {
 	makeStackBigger(count - 1)
 }
 
-func _nosplit() {
-	makeStackBigger(1000 * 1000)
-}
-
-//go:nosplit
-func nosplit() {
-	_nosplit()
-}
-
 func normal() {
 	time.Sleep(1 * time.Second)
 }
@@ -96,8 +87,6 @@ func workerGr(wg *sync.WaitGroup, f func(), fName string) {
 
 func main() {
 	wg := &sync.WaitGroup{}
-
-	//nosplit()
 
 	wg.Add(1)
 	go oocTickGr()
