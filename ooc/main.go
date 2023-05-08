@@ -20,7 +20,6 @@ func normal() {
 }
 
 func infLoop() {
-	defer makeStackBigger(1000 * 1000)
 	defer fmt.Println("infLoop end")
 
 	for {
@@ -55,21 +54,23 @@ func lock2(a, b *sync.Mutex) {
 var oocTick uint64
 
 func oocTickGr() {
+	//todo: cpu忙时可能不准，不见得是坏事?
 	for range time.Tick(10 * time.Millisecond) {
 		atomic.AddUint64(&oocTick, 10)
 	}
 }
 
 func task(f func(), fName string) {
+	bt := time.Now()
 	defer func() {
 		if e := recover(); e != nil {
-			makeStackBigger(1000 * 1000)
-			fmt.Printf("task(%s) error, e = %v\n", fName, e)
+			//makeStackBigger(1000 * 1000)
+			fmt.Printf("task(%s) error, e=%v, elapsed=%v\n", fName, e, time.Now().Sub(bt))
 		}
 	}()
 
 	//enable ooc
-	runtime.EnableOOC(&oocTick, 1000)
+	runtime.EnableOOC(&oocTick, 10*1000)
 	defer runtime.DisableOOC()
 
 	fmt.Printf("task(%s) start\n", fName)
@@ -77,12 +78,21 @@ func task(f func(), fName string) {
 	fmt.Printf("task(%s) completed\n", fName)
 }
 
-func workerGr(wg *sync.WaitGroup, f func(), fName string) {
+// _task的作用是先预占一部分stack空间
+func _task(reserveStack int, f func(), fName string) {
+	if reserveStack == 0 {
+		for {
+			task(f, fName)
+		}
+		return
+	}
+	_task(reserveStack-1, f, fName)
+}
+
+func workerGr(wg *sync.WaitGroup, reserveStack int, f func(), fName string) {
 	defer wg.Done()
 
-	for {
-		task(f, fName)
-	}
+	_task(reserveStack, f, fName)
 }
 
 func main() {
@@ -94,10 +104,10 @@ func main() {
 	//wg.Add(1)
 	//go workerGr(wg, normal, "normal")
 
-	N := 1
+	N := 10 * 1000
 	wg.Add(N)
 	for i := 0; i < N; i++ {
-		go workerGr(wg, infLoop, "infLoop")
+		go workerGr(wg, i, infLoop, fmt.Sprintf("infLoop(%d)", i))
 	}
 
 	//wg.Add(1)
