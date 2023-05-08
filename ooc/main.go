@@ -90,6 +90,7 @@ func _task(reserveStack int, f func(), fName string) {
 }
 
 func workerGr(wg *sync.WaitGroup, reserveStack int, f func(), fName string) {
+	wg.Add(1)
 	defer wg.Done()
 
 	_task(reserveStack, f, fName)
@@ -98,25 +99,19 @@ func workerGr(wg *sync.WaitGroup, reserveStack int, f func(), fName string) {
 func main() {
 	wg := &sync.WaitGroup{}
 
-	wg.Add(1)
 	go oocTickGr()
 
-	//wg.Add(1)
 	//go workerGr(wg, normal, "normal")
 
 	N := 10 * 1000
-	wg.Add(N)
 	for i := 0; i < N; i++ {
 		go workerGr(wg, i, infLoop, fmt.Sprintf("infLoop(%d)", i))
 	}
 
-	//wg.Add(1)
 	//go workerGr(wg, readNilChan, "readNilChan")
 
-	//wg.Add(1)
 	//go workerGr(wg, writeNilChan, "writeNilChan")
 
-	//wg.Add(1)
 	//go workerGr(wg, longSleep, "longSleep")
 
 	//l1, l2 := func() (func(), func()) {
@@ -124,7 +119,6 @@ func main() {
 	//	b := &sync.Mutex{}
 	//	return func() { lock2(a, b) }, func() { lock2(b, a) }
 	//}()
-	//wg.Add(2)
 	//go workerGr(wg, l1, "deadlock1")
 	//go workerGr(wg, l2, "deadlock2")
 

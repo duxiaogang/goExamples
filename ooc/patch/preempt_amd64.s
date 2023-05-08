@@ -142,22 +142,22 @@ panic:
 TEXT ·asmCheckOOC(SB),NOSPLIT,$0-0
 	XORPS X15, X15
 #ifdef GOOS_darwin
-        MOVQ 0x30(GS), R14
+	MOVQ 0x30(GS), R14
 #else
-        MOVQ -8(FS), R14
+	MOVQ -8(FS), R14
 #endif
-        MOVQ 0x188(R14), CX
-        TESTQ CX, CX
-        JE return0
-        MOVQ 0(CX), CX
-        MOVQ 0x190(R14), DX
-        //CMPQ DX, CX
-        CMPQ CX, DX //为什么编译后会反过来？
-        JBE return0
-        MOVL $0x1, AX
-        RET
+	MOVQ 0x188(R14), CX
+	TESTQ CX, CX
+	JE return0
+	MOVQ 0(CX), CX
+	MOVQ 0x190(R14), DX
+	//CMPQ DX, CX
+	CMPQ CX, DX //为什么编译后会反过来？
+	JBE return0
+	MOVL $0x1, AX
+	RET
 return0:
-        XORL AX, AX
-        RET
+	XORL AX, AX
+	RET
 //---------------------------------------------
 

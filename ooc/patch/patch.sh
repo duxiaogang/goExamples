@@ -37,8 +37,8 @@ cp -v $runtimeDir/preempt.go $runtimeDir/preempt.go.bak
 cp -v $runtimeDir/preempt_amd64.s $runtimeDir/preempt_amd64.s.bak
 cp -v $runtimeDir/runtime2.go $runtimeDir/runtime2.go.bak
 #replace
-cp -v preempt.go.new $runtimeDir/preempt.go
-cp -v preempt_amd64.s.new $runtimeDir/preempt_amd64.s
-cp -v runtime2.go.new $runtimeDir/runtime2.go
+cp -v preempt.go $runtimeDir/preempt.go
+cp -v preempt_amd64.s $runtimeDir/preempt_amd64.s
+cp -v runtime2.go $runtimeDir/runtime2.go
 echo "done!"
 

@@ -310,7 +310,7 @@ func asyncPreempt2() {
 	gp.asyncSafePoint = false
 }
 
-//------------------------------------------ duxg
+// ------------------------------------------ duxg
 func EnableOOC(oocTickPtr *uint64, duration uint64) {
 	gp := getg()
 	gp.oocTickPtr = oocTickPtr
@@ -338,8 +338,10 @@ func checkOOC() int {
 }
 
 func oocPanic() {
+	DisableOOC()
 	panic("OOC!")
 }
+
 //---------------------------------------------
 
 // asyncPreemptStack is the bytes of stack space required to inject an
