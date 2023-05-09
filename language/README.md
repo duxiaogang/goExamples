@@ -147,6 +147,66 @@
 - 增加了c++版本，优化太离谱了，只好关掉优化
   - 有个奇怪点，相比不在一个cacheline中的情况，虽然cache miss很低，但是cache references极高？
   - 另外，cpu stall也有点过高了，>90%
+- 我分析是store buffer的作用
+```azure
+(base) duxg@BJNLPC0609:~/goExamples/language/memory/model/cacheline$ time ./cacheline
+&i1=0xc000134000, &i2=0xc000134000, &i3=0xc000134000, &i4=0xc000134000
+i1=6654419475, i2=6654419475, i3=6654419475, i4=6654419475
+
+real    0m11.101s
+user    0m38.668s
+sys     0m0.000s
+(base) duxg@BJNLPC0609:~/goExamples/language/memory/model/cacheline$ vim main.go
+(base) duxg@BJNLPC0609:~/goExamples/language/memory/model/cacheline$ go build
+(base) duxg@BJNLPC0609:~/goExamples/language/memory/model/cacheline$ time ./cacheline
+&i1=0xc000194000, &i2=0xc000194000, &i3=0xc000194000, &i4=0xc000194000
+i1=16000000000, i2=16000000000, i3=16000000000, i4=16000000000
+
+real    0m18.344s
+user    0m18.331s
+sys     0m0.000s
+```
+  - 同一个变量，多线程并发写，和多线程顺序写，并发明显总消耗时间更多，但整体时间有优势
+    - 不过并发方式计算结果是错的，实际没有意义
+```azure
+(base) duxg@BJNLPC0609:~/goExamples/language/memory/model/cacheline$ time ./cacheline
+&i1=0xc000134000, &i2=0xc000134008, &i3=0xc000134010, &i4=0xc000134018
+i1=4000000000, i2=4000000000, i3=4000000000, i4=4000000000
+
+real    0m14.265s
+user    0m55.282s
+sys     0m0.000s
+(base) duxg@BJNLPC0609:~/goExamples/language/memory/model/cacheline$ vim main.go
+(base) duxg@BJNLPC0609:~/goExamples/language/memory/model/cacheline$ go build
+(base) duxg@BJNLPC0609:~/goExamples/language/memory/model/cacheline$ time ./cacheline
+&i1=0xc000194000, &i2=0xc000194008, &i3=0xc000194010, &i4=0xc000194018
+i1=4000000000, i2=4000000000, i3=4000000000, i4=4000000000
+
+real    0m18.369s
+user    0m18.342s
+sys     0m0.020s
+```
+  - 多个变量，位于同一个cacheline中，多线程并发写，和多线程顺序写，并发明显总消耗时间更多，但整体时间仍有优势
+```azure
+(base) duxg@BJNLPC0609:~/goExamples/language/memory/model/cacheline$ time ./cacheline
+&i1=0xc0000b6000, &i2=0xc0000b6320, &i3=0xc0000b6640, &i4=0xc0000b6960
+i1=4000000000, i2=4000000000, i3=4000000000, i4=4000000000
+
+real    0m4.671s
+user    0m18.557s
+sys     0m0.000s
+(base) duxg@BJNLPC0609:~/goExamples/language/memory/model/cacheline$ vim main.go
+(base) duxg@BJNLPC0609:~/goExamples/language/memory/model/cacheline$ go build
+(base) duxg@BJNLPC0609:~/goExamples/language/memory/model/cacheline$ time ./cacheline
+&i1=0xc000134000, &i2=0xc000134320, &i3=0xc000134640, &i4=0xc000134960
+i1=4000000000, i2=4000000000, i3=4000000000, i4=4000000000
+
+real    0m18.376s
+user    0m18.368s
+sys     0m0.000s
+```
+  - 多个变量，不在同一个cacheline中，多线程并发写，和多线程顺序写，并发和顺序消耗总时间几乎一样多，但并发有多核优势
+  - 前一个是单线程，后一个是4线程，多线程反而更快...
 
 
 
