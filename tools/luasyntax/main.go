@@ -14,7 +14,7 @@ import (
 // 注意：_desc可以有多个，但只能放在参数列表的最后
 //
 
-type APICorrection interface {
+type APICallCorrection interface {
 	//argIndex从0计数
 	ArgCorrection(api string, argIndex int, argName, argValue, argDesc string) string
 }
@@ -31,6 +31,7 @@ func (*simpleCorrection) ArgCorrection(api string, argIndex int, argName, argVal
 	//argValue = strings.Trim(argValue, "\"")
 	//return "\"(经过修正的)" + argValue + "\""
 	return "(经过修正的)" + argValue
+	//return argValue + "(" + argDesc + ")"
 }
 
 type ArgInfo struct {
@@ -41,10 +42,10 @@ type ArgInfo struct {
 
 type rewriter struct {
 	funcMap    map[string][]ArgInfo
-	correction APICorrection
+	correction APICallCorrection
 }
 
-func NewRewriter(correction APICorrection) *rewriter {
+func NewRewriter(correction APICallCorrection) *rewriter {
 	rw := &rewriter{}
 	rw.funcMap = make(map[string][]ArgInfo)
 	rw.correction = correction
@@ -64,7 +65,6 @@ func (r *rewriter) Visit(node tree.Node) tree.Visitor {
 		if !ok {
 			panic("1")
 		}
-		//f.NameToken.Bytes = []byte("F")
 		funcName := string(f.NameToken.Bytes)
 		argInfos, ok := r.funcMap[funcName]
 		if !ok {
@@ -82,25 +82,23 @@ func (r *rewriter) Visit(node tree.Node) tree.Visitor {
 			}
 			//argValue
 			it := as.Values.Items[argInfo.argIndex] //todo: check?
-			ve, ok := it.(*tree.StringExpr)
+			valueExpr, ok := it.(*tree.StringExpr)
 			if !ok {
 				continue
 			}
-			argValue := string(ve.StringToken.Bytes)
+			argValue := string(valueExpr.StringToken.Bytes)
 			//argDesc
 			it = as.Values.Items[argInfo.descIndex] //todo: check?
-			de, ok := it.(*tree.StringExpr)
+			descExpr, ok := it.(*tree.StringExpr)
 			if !ok {
-				//todo: ???
 				continue
 			}
-			argDesc := string(de.StringToken.Bytes)
+			argDesc := string(descExpr.StringToken.Bytes)
 			//correction
 			argValue = strings.Trim(argValue, "\"") //fixme: 需要吗？
 			argDesc = strings.Trim(argDesc, "\"")
 			newArgValue := r.correction.ArgCorrection(funcName, argInfo.argIndex, argInfo.argName, argValue, argDesc)
-			ve.StringToken.Bytes = []byte("\"" + newArgValue + "\"")
-			//de.StringToken.Bytes = []byte("___WILL_DELETE___")
+			valueExpr.StringToken.Bytes = []byte("\"" + newArgValue + "\"")
 		}
 		if firstDescIndex < math.MaxInt {
 			as.Values.Items = as.Values.Items[:firstDescIndex]
@@ -132,6 +130,8 @@ function M.cb()
 	if isTrue(get(0, "hello"), "world", 1, set(1, "hi")) then
 		print(get(0, "hello"), "world", 1, set(1, "hi"))
 	end
+
+	Summon("高级强盗", "高级强盗1", "召唤10个高级强盗出来战斗")
 end
 
 return M
@@ -144,11 +144,8 @@ return M
 	rw.AddFunc("IsReached", []ArgInfo{{0, "destination", 1}})
 	rw.AddFunc("Move", []ArgInfo{{0, "destination", 1}})
 	rw.AddFunc("Patrol", []ArgInfo{{0, "path", 1}})
+	rw.AddFunc("Summon", []ArgInfo{{0, "type", 2}})
 	tree.Walk(rw, ast)
-
-	//format.Minify(ast)
-	//tree.FixAdjoinedTokens(ast)
-	//tree.FixTokenOffsets(ast, 0)
 
 	ast.WriteTo(os.Stdout)
 }
