@@ -71,7 +71,7 @@ func textAddr(m *Moduledata, off32 uint32) uintptr
 // moduledata records information about the layout of the executable
 // image. It is written by the linker. Any changes here must be
 // matched changes to the code in cmd/internal/ld/symtab.go:symtab.
-// moduledata is stored in statically allocated non-pointer memory;
+// moduledata is stored in statically allocated non-pointer mem;
 // none of the pointers here are visible to the garbage collector.
 type Moduledata struct {
 	pcHeader     *struct{}

@@ -12,7 +12,7 @@ type typeOff int32
 
 type _type struct {
 	size       uintptr
-	ptrdata    uintptr // size of memory prefix holding all pointers
+	ptrdata    uintptr // size of mem prefix holding all pointers
 	hash       uint32
 	tflag      tflag
 	align      uint8

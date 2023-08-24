@@ -3,4 +3,5 @@
 
 //func asmFunc1()
 TEXT ·asmFunc1(SB), NOSPLIT, $0-0
+    CALL ·goFunc1(SB)
 	RET

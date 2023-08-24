@@ -10,6 +10,8 @@
 ## asm:
 
 
+## atomic:
+- int32类型8byte对齐和4byte对齐对atomic add操作性能无影响
 
 ## gc:
 ### stw:

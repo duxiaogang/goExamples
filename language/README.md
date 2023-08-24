@@ -28,6 +28,9 @@
 - 读closed channel会直接返回0
 - ...
 
+### nilChannel2:
+- 确认了nil channel卡死goroutine时，会导致goroutine中引用的内存无法释放，确实存在内存泄漏的风险
+
 
 ## const:
 - iota的用法
@@ -39,6 +42,9 @@
 
 
 ## defer:
+### return:
+- defer和return的关系，理性分析就行了
+
 ### sequence:
 - defer只对func有效，或者说func才有作用域
   - 或者说defer是挂在stack frame上的
@@ -115,6 +121,17 @@
 
 #### TestSugar2():
 - 使用interface展示对象和其对应的对象指针是否实现了某个receiver为指针的方法
+
+
+
+
+## json:
+#### built-in:
+- 内置json的使用
+
+#### jsonSchema:
+- go struct自动获取对应json schema
+
 
 
 ## memory:
@@ -216,6 +233,12 @@ sys     0m0.000s
 
 
 ## map:
+### keyType:
+- 测试下什么类型可以作为map的key，什么类型不可以
+
+### race:
+- map是怎么发现race的？
+
 ### rmInRange:
 - 在range遍历时delete map成员安全吗？
   - 尚未有结论
@@ -249,6 +272,13 @@ sys     0m0.000s
 ### recover:
 - recover的使用，符合预期
 - 相比其他语言的trycatch，recover只能以函数为单位生效
+
+
+## relfect:
+### type:
+- 关于类型判定系统
+- 实现了什么接口，自己是什么类型，都会(.type)出来
+
 
 
 ## time:

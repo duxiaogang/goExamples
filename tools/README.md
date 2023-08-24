@@ -28,6 +28,17 @@ var c = func() int { return 1 }
 
 
 
+## pprof:
+### cpu:
+- top/list/web/gif
+
+### mem:
+- top/list/web/gif
+
+### net:
+- http://localhost:8989/debug/pprof/
+
+
 ## race:
 ### happensBefore:
 - 名字起的不太好，据说race不止happens-before, 是lockset和happens-before的混合

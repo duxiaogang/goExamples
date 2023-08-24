@@ -48,7 +48,7 @@
 // pointer-containing registers from the signal context. However, this
 // would consume an M for every preempted G, and the scheduler itself
 // is not designed to run from a signal handler, as it tends to
-// allocate memory and start threads in the preemption path.)
+// allocate mem and start threads in the preemption path.)
 
 package runtime
 
