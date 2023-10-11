@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/md5"
 	"fmt"
 	"runtime"
 	"sync"
@@ -9,13 +10,40 @@ import (
 )
 
 func normal() {
-	time.Sleep(1 * time.Second)
+	for i := 0; i < 1000; i++ {
+		time.Sleep(10 * time.Millisecond)
+		//for j := 0; j < 1*1000*1000; j++ {
+		//}
+	}
+}
+
+func infLoop_() {
+	defer fmt.Println("infLoop_ end") //fixme: call不到？
+
+	for {
+	}
 }
 
 func infLoop() {
 	defer fmt.Println("infLoop end")
 
-	for {
+	infLoop_()
+}
+
+func compute() {
+	data := []byte("Hello, World!")
+	//goal := "9d6b00250efc6dfd4efe667d2e0970ad"	//100
+	goal := "9d7e15f00b41b486ceedd68fca6f1142" //10
+
+	hash := md5.Sum(data)
+	for i := 0; i < 10*1000*1000; i++ {
+		hash = md5.Sum(hash[:])
+	}
+
+	if fmt.Sprintf("%x", hash) != goal {
+		panic(hash)
+	} else {
+		fmt.Println("compute ok")
 	}
 }
 
@@ -58,11 +86,16 @@ func main() {
 
 	go oocTickGr()
 
-	wg.Add(1)
-	go workerGr(wg, normal, "normal")
+	//wg.Add(1)
+	//go workerGr(wg, normal, "normal")
 
 	wg.Add(1)
 	go workerGr(wg, infLoop, "infLoop")
+
+	for i := 0; i < 4; i++ {
+		wg.Add(1)
+		go workerGr(wg, compute, "compute")
+	}
 
 	wg.Wait()
 }

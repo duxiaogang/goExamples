@@ -322,10 +322,6 @@ func DisableOOC() {
 	gp.oocTickPtr = nil
 }
 
-func checkOOCWrapper()
-
-func asmCheckOOC()
-
 //go:nosplit
 func checkOOC() int {
 	gp := getg()
