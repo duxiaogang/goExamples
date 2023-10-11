@@ -18,7 +18,7 @@ func normal() {
 }
 
 func infLoop_() {
-	defer fmt.Println("infLoop_ end") //fixme: call不到？
+	defer fmt.Println("infLoop_ end") //fixme: call不到？并不是，因为下面的死循环太明显，所以被编译器优化掉了
 
 	for {
 	}
