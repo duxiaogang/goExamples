@@ -505,7 +505,6 @@ type g struct {
 	gcAssistBytes int64
 
 	//------------------------------------------ duxg
-	oocTickPtr *uint64
 	oocTimeout uint64
 	//---------------------------------------------
 }

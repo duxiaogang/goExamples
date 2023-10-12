@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"runtime"
 	"sync"
-	"sync/atomic"
 	"time"
 )
 
@@ -47,12 +46,10 @@ func compute() {
 	}
 }
 
-var oocTick uint64
-
 func oocTickGr() {
 	//todo: cpu忙时可能不准，不见得是坏事?
 	for range time.Tick(10 * time.Millisecond) {
-		atomic.AddUint64(&oocTick, 10)
+		runtime.UpdateOOCTick(10)
 	}
 }
 
@@ -65,7 +62,7 @@ func task(f func(), fName string) {
 	}()
 
 	//enable ooc
-	runtime.EnableOOC(&oocTick, 3*1000)
+	runtime.EnableOOC(3 * 1000)
 	defer runtime.DisableOOC()
 
 	fmt.Printf("task(%s) start\n", fName)
@@ -92,7 +89,7 @@ func main() {
 	wg.Add(1)
 	go workerGr(wg, infLoop, "infLoop")
 
-	for i := 0; i < 4; i++ {
+	for i := 0; i < 15; i++ {
 		wg.Add(1)
 		go workerGr(wg, compute, "compute")
 	}

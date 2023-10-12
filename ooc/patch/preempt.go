@@ -311,22 +311,27 @@ func asyncPreempt2() {
 }
 
 // ------------------------------------------ duxg
-func EnableOOC(oocTickPtr *uint64, duration uint64) {
+var oocTick uint64
+
+func UpdateOOCTick(ms int64) {
+	atomic.Xadd64(&oocTick, ms)
+}
+
+func EnableOOC(duration uint64) {
 	gp := getg()
-	gp.oocTickPtr = oocTickPtr
-	gp.oocTimeout = atomic.Load64(oocTickPtr) + duration
+	gp.oocTimeout = atomic.Load64(&oocTick) + duration
 }
 
 func DisableOOC() {
 	gp := getg()
-	gp.oocTickPtr = nil
+	gp.oocTimeout = 0
 }
 
 //go:nosplit
 func checkOOC() int {
 	gp := getg()
-	if gp.oocTickPtr != nil {
-		if atomic.Load64(gp.oocTickPtr) > gp.oocTimeout {
+	if gp.oocTimeout != 0 {
+		if atomic.Load64(&oocTick) > gp.oocTimeout {
 			return 1
 		}
 	}
