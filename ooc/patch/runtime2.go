@@ -222,7 +222,7 @@ func efaceOf(ep *any) *eface {
 // queuing can occur, it will incorrectly free the object.
 //
 // We tried using special assignment functions invoked only when not
-// holding a running P, but then some updates to a particular mem
+// holding a running P, but then some updates to a particular memory
 // word went through write barriers and some did not. This breaks the
 // write barrier shadow checking mode, and it is also scary: better to have
 // a word that is completely ignored by the GC than to have one for which
@@ -406,7 +406,7 @@ type heldLockInfo struct {
 
 type g struct {
 	// Stack parameters.
-	// stack describes the actual stack mem: [stack.lo, stack.hi).
+	// stack describes the actual stack memory: [stack.lo, stack.hi).
 	// stackguard0 is the stack pointer compared in the Go stack growth prologue.
 	// It is stack.lo+StackGuard normally, but can be StackPreempt to trigger a preemption.
 	// stackguard1 is the stack pointer compared in the C stack growth prologue.
@@ -873,7 +873,7 @@ const (
 	_SigIgn                  // _SIG_DFL action is to ignore the signal
 )
 
-// Layout of in-mem per-function information prepared by linker
+// Layout of in-memory per-function information prepared by linker
 // See https://golang.org/s/go12symtab.
 // Keep in sync with linker (../cmd/link/internal/ld/pcln.go:/pclntab)
 // and with package debug/gosym and with symtab.go in package runtime.
@@ -907,7 +907,7 @@ type funcinl struct {
 }
 
 // layout of Itab known to compilers
-// allocated in non-garbage-collected mem
+// allocated in non-garbage-collected memory
 // Needs to be in sync with
 // ../cmd/compile/internal/reflectdata/reflect.go:/^func.WriteTabs.
 type itab struct {
