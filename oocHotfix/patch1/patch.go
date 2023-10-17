@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"github.com/agiledragon/gomonkey/v2"
-	"github.com/duxiaogang/goExamples/oocHotfix/app"
 	"github.com/duxiaogang/goExamples/oocHotfix/patch"
 	"github.com/duxiaogang/goExamples/oocHotfix/patch/lookup"
+	"github.com/duxiaogang/goExamples/oocHotfix/patch1/funcs"
 	"reflect"
 	_ "unsafe"
 )
@@ -15,20 +15,19 @@ var _ patch.PatchInterface = (*patch1)(nil)
 type patch1 struct {
 }
 
-func replacedFunc1() string {
-	return "patch1's replacedFunc1()"
+func asyncPreempt() {
 }
 
 func (p patch1) Patch() (any, error) {
 	patched := gomonkey.NewPatches()
 
-	//replace GlobalFunc1
-	target, err := lookup.MakeValueByFunctionName(app.GlobalFunc1, "github.com/duxiaogang/goExamples/oocHotfix/app.GlobalFunc1")
+	//replace asyncPreempt
+	target, err := lookup.MakeValueByFunctionName(asyncPreempt, "runtime.asyncPreempt.abi0")
 	if err != nil {
 		return nil, err
 	}
-	patched.ApplyCore(target, reflect.ValueOf(replacedFunc1))
-	patched.ApplyCore(reflect.ValueOf(app.GlobalFunc1), reflect.ValueOf(replacedFunc1))
+	patched.ApplyCore(target, reflect.ValueOf(funcs.AsyncPreemptOOC)) //todo: abi0?
+	//patched.ApplyCore(reflect.ValueOf(asyncPreempt), reflect.ValueOf(funcs.AsyncPreemptOOC))
 
 	return patched, nil
 }
