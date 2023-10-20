@@ -24,7 +24,7 @@ func infLoop_() {
 }
 
 func infLoop() {
-	defer fmt.Println("infLoop end")
+	//defer fmt.Println("infLoop end")
 
 	infLoop_()
 }
@@ -42,7 +42,7 @@ func compute() {
 	if fmt.Sprintf("%x", hash) != goal {
 		panic(hash)
 	} else {
-		fmt.Println("compute ok")
+		//fmt.Println("compute ok")
 	}
 }
 
@@ -65,9 +65,9 @@ func task(f func(), fName string) {
 	runtime.EnableOOC(3 * 1000)
 	defer runtime.DisableOOC()
 
-	fmt.Printf("task(%s) start\n", fName)
+	//fmt.Printf("task(%s) start\n", fName)
 	f()
-	fmt.Printf("task(%s) completed\n", fName)
+	//fmt.Printf("task(%s) completed\n", fName)
 }
 
 func workerGr(wg *sync.WaitGroup, f func(), fName string) {
@@ -89,7 +89,7 @@ func main() {
 	wg.Add(1)
 	go workerGr(wg, infLoop, "infLoop")
 
-	for i := 0; i < 15; i++ {
+	for i := 0; i < 25; i++ {
 		wg.Add(1)
 		go workerGr(wg, compute, "compute")
 	}
