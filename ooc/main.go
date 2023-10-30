@@ -8,11 +8,21 @@ import (
 	"time"
 )
 
-func normal() {
+func mallocing() {
+	for {
+	}
+}
+
+func sleepy() {
 	for i := 0; i < 1000; i++ {
 		time.Sleep(10 * time.Millisecond)
-		//for j := 0; j < 1*1000*1000; j++ {
-		//}
+	}
+}
+
+func tick() {
+	ticker := time.NewTicker(10 * time.Millisecond)
+	for i := 0; i < 1000; i++ {
+		<-ticker.C
 	}
 }
 
@@ -83,13 +93,16 @@ func main() {
 
 	go oocTickGr()
 
-	//wg.Add(1)
-	//go workerGr(wg, normal, "normal")
+	wg.Add(1)
+	go workerGr(wg, sleepy, "sleepy")
+
+	wg.Add(1)
+	go workerGr(wg, tick, "tick")
 
 	wg.Add(1)
 	go workerGr(wg, infLoop, "infLoop")
 
-	for i := 0; i < 25; i++ {
+	for i := 0; i < 1; i++ {
 		wg.Add(1)
 		go workerGr(wg, compute, "compute")
 	}
