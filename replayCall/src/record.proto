@@ -1,0 +1,37 @@
+syntax = "proto3";
+package src;
+
+option go_package = "github.com/record";
+
+message Records {
+  repeated Call calls = 1;
+}
+
+message Call {
+  int32 frame = 1;
+  string funcName = 2;
+  bytes funcArgs = 3;
+}
+
+message CreateShowObj1 {
+  int32 newObjTag = 1;
+}
+
+message ShowInf1F1 {
+  int32 receiverTag = 1;
+}
+
+message ShowInf1F2 {
+  int32 receiverTag = 1;
+  int32 argI1 = 2;
+}
+
+message ShowInf1F3 {
+  int32 receiverTag = 1;
+  int32 argI1 = 2;
+  int32 argI2 = 3;
+  float argF1 = 4;
+  float argF2 = 5;
+  float argF3 = 6;
+  string argS1 = 7;
+}
