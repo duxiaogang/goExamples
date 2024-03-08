@@ -40,7 +40,7 @@ func replay() {
 			o := client.CreateShowObj1()
 			objMap[arg.NewObjTag] = o
 		} else if c.FuncName == "ShowInf1F1" {
-			arg := record.ShowInf1F2{}
+			arg := record.ShowInf1F1{}
 			proto.Unmarshal(c.FuncArgs, &arg)
 			o := objMap[arg.ReceiverTag].(src.ShowInf1)
 			o.F1()
