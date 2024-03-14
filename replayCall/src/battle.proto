@@ -1,0 +1,62 @@
+syntax = "proto3";
+package src;
+
+option csharp_namespace = "Replay";
+
+message Battle {
+  repeated Frame frames = 1;
+}
+
+message Frame {
+  int32 Index = 1;
+  repeated Call calls = 2;
+}
+
+message Call {
+  string funcName = 2;
+  bytes funcArgs = 3;
+}
+
+message Pos3 {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+
+message EntityShowInfOnMoveTo {
+  int32 receiverTag = 1;
+  Pos3 argPos = 2;
+}
+
+message EntityShowInfOnStopMove {
+  int32 receiverTag = 1;
+}
+
+message EntityShowInfOnHPChange {
+  int32 receiverTag = 1;
+  float argHPPercent = 2;
+}
+
+message EntityShowInfOnCastSkill {
+  int32 receiverTag = 1;
+  int32 argSkillID = 2;
+  int32 argTarget = 3;
+}
+
+message EntityShowInfOnHit {
+  int32 receiverTag = 1;
+}
+
+message EntityShowInfOnDamage {
+  int32 receiverTag = 1;
+  int32 argDamage = 2;
+}
+
+message EntityShowInfOnHeal {
+  int32 receiverTag = 1;
+  int32 argHeal = 2;
+}
+
+message EntityShowInfOnDie {
+  int32 receiverTag = 1;
+}

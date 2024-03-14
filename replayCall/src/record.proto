@@ -2,6 +2,7 @@ syntax = "proto3";
 package src;
 
 option go_package = "github.com/record";
+option csharp_namespace = "ReplayCall.Record";
 
 message Records {
   repeated Call calls = 1;
