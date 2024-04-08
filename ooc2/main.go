@@ -81,14 +81,21 @@ func workerGr(wg *sync.WaitGroup, f func(), fName string) {
 	}
 }
 
-//go:linkname asyncPreempt runtime.asyncPreempt
-func asyncPreempt()
+////go:linkname asyncPreempt runtime.asyncPreempt
+//func asyncPreempt()
+//
+////go:linkname asyncPreemptOOC runtime.asyncPreemptOOC
+//func asyncPreemptOOC()
 
-//go:linkname asyncPreemptOOC runtime.asyncPreemptOOC
-func asyncPreemptOOC()
+//go:linkname doSigPreempt runtime.doSigPreempt
+func doSigPreempt()
+
+//go:linkname doSigPreemptOOC runtime.doSigPreemptOOC
+func doSigPreemptOOC()
 
 func main() {
-	gomonkey.ApplyFunc(asyncPreempt, asyncPreemptOOC)
+	//gomonkey.ApplyFunc(asyncPreempt, asyncPreemptOOC)
+	gomonkey.ApplyFunc(doSigPreempt, doSigPreemptOOC)
 
 	wg := &sync.WaitGroup{}
 

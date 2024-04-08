@@ -24,26 +24,26 @@ namespace Replay {
     static BattleReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgxiYXR0bGUucHJvdG8SA3NyYyIkCgZCYXR0bGUSGgoGZnJhbWVzGAEgAygL",
-            "Mgouc3JjLkZyYW1lIjAKBUZyYW1lEg0KBUluZGV4GAEgASgFEhgKBWNhbGxz",
-            "GAIgAygLMgkuc3JjLkNhbGwiKgoEQ2FsbBIQCghmdW5jTmFtZRgCIAEoCRIQ",
-            "CghmdW5jQXJncxgDIAEoDCInCgRQb3MzEgkKAXgYASABKAISCQoBeRgCIAEo",
-            "AhIJCgF6GAMgASgCIkcKFUVudGl0eVNob3dJbmZPbk1vdmVUbxITCgtyZWNl",
-            "aXZlclRhZxgBIAEoBRIZCgZhcmdQb3MYAiABKAsyCS5zcmMuUG9zMyIuChdF",
-            "bnRpdHlTaG93SW5mT25TdG9wTW92ZRITCgtyZWNlaXZlclRhZxgBIAEoBSJE",
-            "ChdFbnRpdHlTaG93SW5mT25IUENoYW5nZRITCgtyZWNlaXZlclRhZxgBIAEo",
-            "BRIUCgxhcmdIUFBlcmNlbnQYAiABKAIiVgoYRW50aXR5U2hvd0luZk9uQ2Fz",
-            "dFNraWxsEhMKC3JlY2VpdmVyVGFnGAEgASgFEhIKCmFyZ1NraWxsSUQYAiAB",
-            "KAUSEQoJYXJnVGFyZ2V0GAMgASgFIikKEkVudGl0eVNob3dJbmZPbkhpdBIT",
-            "CgtyZWNlaXZlclRhZxgBIAEoBSI/ChVFbnRpdHlTaG93SW5mT25EYW1hZ2US",
-            "EwoLcmVjZWl2ZXJUYWcYASABKAUSEQoJYXJnRGFtYWdlGAIgASgFIjsKE0Vu",
-            "dGl0eVNob3dJbmZPbkhlYWwSEwoLcmVjZWl2ZXJUYWcYASABKAUSDwoHYXJn",
-            "SGVhbBgCIAEoBSIpChJFbnRpdHlTaG93SW5mT25EaWUSEwoLcmVjZWl2ZXJU",
-            "YWcYASABKAVCCaoCBlJlcGxheWIGcHJvdG8z"));
+            "CgxiYXR0bGUucHJvdG8SA3NyYyI1CgZCYXR0bGUSDwoHVmVyc2lvbhgBIAEo",
+            "BRIaCgZmcmFtZXMYAiADKAsyCi5zcmMuRnJhbWUiMAoFRnJhbWUSDQoFSW5k",
+            "ZXgYASABKAUSGAoFY2FsbHMYAiADKAsyCS5zcmMuQ2FsbCIqCgRDYWxsEhAK",
+            "CGZ1bmNOYW1lGAIgASgJEhAKCGZ1bmNBcmdzGAMgASgMIicKBFBvczMSCQoB",
+            "eBgBIAEoAhIJCgF5GAIgASgCEgkKAXoYAyABKAIiRwoVRW50aXR5U2hvd0lu",
+            "Zk9uTW92ZVRvEhMKC3JlY2VpdmVyVGFnGAEgASgFEhkKBmFyZ1BvcxgCIAEo",
+            "CzIJLnNyYy5Qb3MzIi4KF0VudGl0eVNob3dJbmZPblN0b3BNb3ZlEhMKC3Jl",
+            "Y2VpdmVyVGFnGAEgASgFIkQKF0VudGl0eVNob3dJbmZPbkhQQ2hhbmdlEhMK",
+            "C3JlY2VpdmVyVGFnGAEgASgFEhQKDGFyZ0hQUGVyY2VudBgCIAEoAiJWChhF",
+            "bnRpdHlTaG93SW5mT25DYXN0U2tpbGwSEwoLcmVjZWl2ZXJUYWcYASABKAUS",
+            "EgoKYXJnU2tpbGxJRBgCIAEoBRIRCglhcmdUYXJnZXQYAyABKAUiKQoSRW50",
+            "aXR5U2hvd0luZk9uSGl0EhMKC3JlY2VpdmVyVGFnGAEgASgFIj8KFUVudGl0",
+            "eVNob3dJbmZPbkRhbWFnZRITCgtyZWNlaXZlclRhZxgBIAEoBRIRCglhcmdE",
+            "YW1hZ2UYAiABKAUiOwoTRW50aXR5U2hvd0luZk9uSGVhbBITCgtyZWNlaXZl",
+            "clRhZxgBIAEoBRIPCgdhcmdIZWFsGAIgASgFIikKEkVudGl0eVNob3dJbmZP",
+            "bkRpZRITCgtyZWNlaXZlclRhZxgBIAEoBUIJqgIGUmVwbGF5YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Replay.Battle), global::Replay.Battle.Parser, new[]{ "Frames" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Replay.Battle), global::Replay.Battle.Parser, new[]{ "Version", "Frames" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Replay.Frame), global::Replay.Frame.Parser, new[]{ "Index", "Calls" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Replay.Call), global::Replay.Call.Parser, new[]{ "FuncName", "FuncArgs" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Replay.Pos3), global::Replay.Pos3.Parser, new[]{ "X", "Y", "Z" }, null, null, null),
@@ -86,6 +86,7 @@ namespace Replay {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Battle(Battle other) : this() {
+      version_ = other.version_;
       frames_ = other.frames_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -95,10 +96,21 @@ namespace Replay {
       return new Battle(this);
     }
 
+    /// <summary>Field number for the "Version" field.</summary>
+    public const int VersionFieldNumber = 1;
+    private int version_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int Version {
+      get { return version_; }
+      set {
+        version_ = value;
+      }
+    }
+
     /// <summary>Field number for the "frames" field.</summary>
-    public const int FramesFieldNumber = 1;
+    public const int FramesFieldNumber = 2;
     private static readonly pb::FieldCodec<global::Replay.Frame> _repeated_frames_codec
-        = pb::FieldCodec.ForMessage(10, global::Replay.Frame.Parser);
+        = pb::FieldCodec.ForMessage(18, global::Replay.Frame.Parser);
     private readonly pbc::RepeatedField<global::Replay.Frame> frames_ = new pbc::RepeatedField<global::Replay.Frame>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::Replay.Frame> Frames {
@@ -118,6 +130,7 @@ namespace Replay {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Version != other.Version) return false;
       if(!frames_.Equals(other.frames_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -125,6 +138,7 @@ namespace Replay {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (Version != 0) hash ^= Version.GetHashCode();
       hash ^= frames_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -139,6 +153,10 @@ namespace Replay {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (Version != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Version);
+      }
       frames_.WriteTo(output, _repeated_frames_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -148,6 +166,9 @@ namespace Replay {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (Version != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Version);
+      }
       size += frames_.CalculateSize(_repeated_frames_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -159,6 +180,9 @@ namespace Replay {
     public void MergeFrom(Battle other) {
       if (other == null) {
         return;
+      }
+      if (other.Version != 0) {
+        Version = other.Version;
       }
       frames_.Add(other.frames_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -172,7 +196,11 @@ namespace Replay {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
-          case 10: {
+          case 8: {
+            Version = input.ReadInt32();
+            break;
+          }
+          case 18: {
             frames_.AddEntriesFrom(input, _repeated_frames_codec);
             break;
           }

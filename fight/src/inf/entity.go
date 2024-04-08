@@ -1,4 +1,4 @@
-package view
+package inf
 
 type EntityID int32
 
@@ -6,6 +6,7 @@ type EntityInf interface {
 	ID() EntityID
 	Prop() PropInf
 	BuffMgr() BuffMgrInf
+	CoolDownMgr() CoolDownMgrInf
 	SkillMgr() SkillMgrInf
 	AIMgr() AIMgrInf
 

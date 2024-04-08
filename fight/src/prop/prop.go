@@ -1,28 +1,33 @@
-package src
+package prop
 
-var _ PropInf = (*Prop)(nil)
+import "github.com/duxiaogang/goExamples/fight/src/inf"
+
+var _ inf.PropInf = (*Prop)(nil)
 
 type Prop struct {
-	base    [PropCount]float64
-	percent [PropCount]float64
-	point   [PropCount]float64
-	cur     [PropCount]float64
+	entity inf.EntityInf
+
+	//cur = base x (1 + percent) + point
+	base    [inf.PropCount]float64
+	percent [inf.PropCount]float64
+	point   [inf.PropCount]float64
+	cur     [inf.PropCount]float64
 
 	hp float64
 	mp float64
 }
 
-func (p *Prop) Init() bool {
+func (p *Prop) Init(entity inf.EntityInf) bool {
 	return false
 }
 
-func (p *Prop) Get(index PropIndex) float64 {
+func (p *Prop) Get(index inf.PropIndex) float64 {
 	return 0
 }
-func (p *Prop) ModByPercent(index PropIndex, percent float64) float64 {
+func (p *Prop) ModByPercent(index inf.PropIndex, percent float64) float64 {
 	return 0
 }
-func (p *Prop) ModByPoint(index PropIndex, point float64) float64 {
+func (p *Prop) ModByPoint(index inf.PropIndex, point float64) float64 {
 	return 0
 }
 
@@ -30,12 +35,14 @@ func (p *Prop) ModByPoint(index PropIndex, point float64) float64 {
 func (p *Prop) GetHP() float64 {
 	return 0
 }
-func (p *Prop) SetHP(val float64) {
+func (p *Prop) SetHP(val float64) float64 {
+	return 0
 }
 
 // MP
 func (p *Prop) GetMP() float64 {
 	return 0
 }
-func (p *Prop) SetMP(val float64) {
+func (p *Prop) SetMP(val float64) float64 {
+	return 0
 }

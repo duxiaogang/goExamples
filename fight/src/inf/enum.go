@@ -1,4 +1,4 @@
-package view
+package inf
 
 type PropIndex int
 

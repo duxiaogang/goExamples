@@ -6,6 +6,7 @@ import (
 )
 
 type B struct {
+	//*pckA.A
 	A pckCommon.CommonInf
 }
 

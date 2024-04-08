@@ -8,8 +8,8 @@ func print(x int) {
 }
 
 //go:noinline
-func f1(a, b, c int) {
-	r := a + b + c
+func f1(a, b, c, d int) {
+	r := a + b + c + d
 	print(r)
 }
 
@@ -28,7 +28,7 @@ func f3(a, b, c int) int {
 }
 
 func main() {
-	f1(1, 2, 3)
+	f1(1, 2, 3, 4)
 
 	r1, r2, r3 := f2(1, 2)
 	print(r1 + r2 + r3)

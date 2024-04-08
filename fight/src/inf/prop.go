@@ -1,4 +1,4 @@
-package view
+package inf
 
 type PropInf interface {
 	Init(entity EntityInf) bool //todo:

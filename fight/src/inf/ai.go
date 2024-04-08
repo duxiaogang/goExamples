@@ -1,4 +1,4 @@
-package view
+package inf
 
 import "time"
 

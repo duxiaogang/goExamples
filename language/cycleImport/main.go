@@ -6,6 +6,13 @@ import (
 )
 
 func main() {
-	a := &pckA.A{B: &pckB.B{}}
+	//a := &pckA.A{B: &pckB.B{}}
+	//a.Print()
+
+	a := &pckA.A{}
+	b := &pckB.B{}
+	a.B = b
+	b.A = a
 	a.Print()
+	b.Print()
 }

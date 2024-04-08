@@ -532,7 +532,7 @@ var (
 	//
 	// allgptr is updated before allglen. Readers should read allglen
 	// before allgptr to ensure that allglen is always <= len(allgptr). New
-	// Gs appended during the race can be missed. For a consistent view of
+	// Gs appended during the race can be missed. For a consistent inf of
 	// all Gs, allglock must be held.
 	//
 	// allgptr copies should always be stored as a concrete type or
