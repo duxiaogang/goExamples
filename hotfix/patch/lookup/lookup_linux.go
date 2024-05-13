@@ -20,9 +20,9 @@ package lookup
    	return r;
    }
 
-   static void* localLookup2(const char* soPath, const char* name, char** err) {
+   static void* localLookup4So(const char* soPath, const char* name, char** err) {
 	dlerror();
-	void* h = dlopen(soPath, 0x102);
+	void* h = dlopen(soPath, 0x102); //flags: RTLD_NOW|RTLD_GLOBAL
 	if (h == NULL) {
    		*err = (char*)dlerror();
 	}
@@ -53,7 +53,7 @@ func FindFuncWithName(name string) (uintptr, error) {
 	return uintptr(handle), nil
 }
 
-func FindFuncWithName2(soPath, name string) (uintptr, error) {
+func FindFuncWithName4So(soPath, name string) (uintptr, error) {
 	var cErr *C.char
 	nameStr := make([]byte, len(name)+1)
 	copy(nameStr, name)
@@ -64,10 +64,10 @@ func FindFuncWithName2(soPath, name string) (uintptr, error) {
 	if C.realpath(
 		(*C.char)(unsafe.Pointer(&cRelName[0])),
 		(*C.char)(unsafe.Pointer(&cPath[0]))) == nil {
-		return 0, errors.New(`FindFuncWithName2("` + soPath + `"): realpath failed`)
+		return 0, errors.New(`FindFuncWithName4So("` + soPath + `"): realpath failed`)
 	}
 
-	handle := C.localLookup2((*C.char)(unsafe.Pointer(&cPath[0])), (*C.char)(unsafe.Pointer(&nameStr[0])), &cErr)
+	handle := C.localLookup4So((*C.char)(unsafe.Pointer(&cPath[0])), (*C.char)(unsafe.Pointer(&nameStr[0])), &cErr)
 	if handle == nil {
 		return 0, errors.New(C.GoString(cErr))
 	}
@@ -96,16 +96,16 @@ func MakeValueByFunctionName(target interface{}, name string) (reflect.Value, er
 	return src, nil
 }
 
-func MakeValueByFunctionName2(target interface{}, soPath, name string) (reflect.Value, error) {
+func MakeValueByFunctionName4So(target interface{}, soPath, name string) (reflect.Value, error) {
 	src := reflect.ValueOf(target)
 	if src.Kind() != reflect.Func {
 		return src, fmt.Errorf("%s is not function", src.String())
 	}
-	ptr, err := FindFuncWithName2(soPath, name)
+	ptr, err := FindFuncWithName4So(soPath, name)
 	if err != nil {
 		return src, err
 	}
-	fmt.Printf("============ MakeValueByFunctionName2(%s), ptr=0x%08x\n", name, ptr)
+	fmt.Printf("============ MakeValueByFunctionName4So(%s), ptr=0x%08x\n", name, ptr)
 	val := (*[2]uintptr)(unsafe.Pointer(&src))
 	(*val)[1] = uintptr(makePtr(ptr))
 	return src, nil

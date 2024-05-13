@@ -68,8 +68,8 @@ func ApplyExeAndSo(patched *gomonkey.Patches, target any, soPath, name string, n
 	}
 	patched.ApplyCore(t, reflect.ValueOf(new))
 
-	//apply to so local
-	t, err = lookup.MakeValueByFunctionName2(target, soPath, name)
+	//apply to so locally
+	t, err = lookup.MakeValueByFunctionName4So(target, soPath, name)
 	if err != nil {
 		return err
 	}

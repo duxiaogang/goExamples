@@ -164,6 +164,6 @@ func MakeValueByFunctionName(target interface{}, name string) (reflect.Value, er
 	return src, nil
 }
 
-func MakeValueByFunctionName2(target interface{}, soPath, name string) (reflect.Value, error) {
+func MakeValueByFunctionName4So(target interface{}, soPath, name string) (reflect.Value, error) {
 	return reflect.ValueOf(target), nil
 }
