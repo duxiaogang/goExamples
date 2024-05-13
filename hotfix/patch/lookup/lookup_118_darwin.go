@@ -158,7 +158,12 @@ func MakeValueByFunctionName(target interface{}, name string) (reflect.Value, er
 	if err != nil {
 		return src, err
 	}
+	fmt.Printf("============ MakeValueByFunctionName(%s), ptr=0x%08x\n", name, ptr)
 	val := (*[2]uintptr)(unsafe.Pointer(&src))
 	(*val)[1] = uintptr(makePtr(ptr))
 	return src, nil
+}
+
+func MakeValueByFunctionName2(target interface{}, soPath, name string) (reflect.Value, error) {
+	return reflect.ValueOf(target), nil
 }

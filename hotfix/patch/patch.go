@@ -6,7 +6,7 @@ import (
 )
 
 type PatchInterface interface {
-	Patch() (any, error)
+	Patch(soPath string) (any, error)
 	Reset(any) error
 }
 
@@ -36,7 +36,7 @@ func (p *PatchTool) DoPatch(path string) error {
 		return fmt.Errorf("PatchTool.DoPatch(), plugin do not implement PatchInterface, path = %v", path)
 	}
 
-	patched, err := entry.Patch()
+	patched, err := entry.Patch(path)
 	if err != nil {
 		return err
 	}

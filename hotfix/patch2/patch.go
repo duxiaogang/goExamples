@@ -33,7 +33,7 @@ func ReplacedFunc3() string {
 //go:linkname privateVar1 github.com/duxiaogang/goExamples/hotfix/app.privateVar1
 var privateVar1 int
 
-func (p patch2) Patch() (any, error) {
+func (p patch2) Patch(soPath string) (any, error) {
 	f1 := app.GlobalFunc1
 	f2 := app.GlobalFunc2
 	fmt.Printf("patch2.Patch(), app.GlobalFunc1=0x%x, app.GlobalFunc2=0x%x\n", **(**uintptr)(unsafe.Pointer(&f1)), **(**uintptr)(unsafe.Pointer(&f2)))
@@ -46,7 +46,12 @@ func (p patch2) Patch() (any, error) {
 		return nil, err
 	}
 	patched.ApplyCore(target, reflect.ValueOf(ReplacedFunc1))
-	patched.ApplyCore(reflect.ValueOf(app.GlobalFunc1), reflect.ValueOf(ReplacedFunc1))
+	//patched.ApplyCore(reflect.ValueOf(app.GlobalFunc1), reflect.ValueOf(ReplacedFunc1))
+	target, err = lookup.MakeValueByFunctionName2(app.GlobalFunc1, soPath, "github.com/duxiaogang/goExamples/hotfix/app.GlobalFunc1")
+	if err != nil {
+		return nil, err
+	}
+	patched.ApplyCore(target, reflect.ValueOf(ReplacedFunc1))
 
 	//replace GlobalFunc2
 	target, err = lookup.MakeValueByFunctionName(app.GlobalFunc2, "github.com/duxiaogang/goExamples/hotfix/app.GlobalFunc2")
@@ -54,7 +59,12 @@ func (p patch2) Patch() (any, error) {
 		return nil, err
 	}
 	patched.ApplyCore(target, reflect.ValueOf(ReplacedFunc2))
-	patched.ApplyCore(reflect.ValueOf(app.GlobalFunc2), reflect.ValueOf(ReplacedFunc2))
+	//patched.ApplyCore(reflect.ValueOf(app.GlobalFunc2), reflect.ValueOf(ReplacedFunc2))
+	target, err = lookup.MakeValueByFunctionName2(app.GlobalFunc2, soPath, "github.com/duxiaogang/goExamples/hotfix/app.GlobalFunc2")
+	if err != nil {
+		return nil, err
+	}
+	patched.ApplyCore(target, reflect.ValueOf(ReplacedFunc2))
 
 	//replace GlobalFunc3
 	target, err = lookup.MakeValueByFunctionName(app.GlobalFunc3, "github.com/duxiaogang/goExamples/hotfix/app.GlobalFunc3")
@@ -62,7 +72,12 @@ func (p patch2) Patch() (any, error) {
 		return nil, err
 	}
 	patched.ApplyCore(target, reflect.ValueOf(ReplacedFunc3))
-	patched.ApplyCore(reflect.ValueOf(app.GlobalFunc3), reflect.ValueOf(ReplacedFunc3))
+	//patched.ApplyCore(reflect.ValueOf(app.GlobalFunc3), reflect.ValueOf(ReplacedFunc3))
+	target, err = lookup.MakeValueByFunctionName2(app.GlobalFunc3, soPath, "github.com/duxiaogang/goExamples/hotfix/app.GlobalFunc3")
+	if err != nil {
+		return nil, err
+	}
+	patched.ApplyCore(target, reflect.ValueOf(ReplacedFunc3))
 
 	//replace GlobalVar1
 	patched.ApplyGlobalVar(&app.GlobalVar1, 2)

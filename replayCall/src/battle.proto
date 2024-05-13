@@ -24,6 +24,14 @@ message Pos3 {
   float z = 3;
 }
 
+//scene
+message SceneShowInfOnCreateSubObj {
+  //int32 receiverTag = 1;
+  int32 argTag = 1;
+  Pos3 argInitPos = 2;
+}
+
+//entity
 message EntityShowInfOnMoveTo {
   int32 receiverTag = 1;
   Pos3 argPos = 2;
@@ -59,5 +67,19 @@ message EntityShowInfOnHeal {
 }
 
 message EntityShowInfOnDie {
+  int32 receiverTag = 1;
+}
+
+//subobj
+message SubObjShowInfOnMoveTo {
+  int32 receiverTag = 1;
+  Pos3 argPos = 2;
+}
+
+message SubObjShowInfOnStopMove {
+  int32 receiverTag = 1;
+}
+
+message SubObjShowInfOnTrigger {
   int32 receiverTag = 1;
 }

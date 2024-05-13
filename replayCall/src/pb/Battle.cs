@@ -28,18 +28,24 @@ namespace Replay {
             "BRIaCgZmcmFtZXMYAiADKAsyCi5zcmMuRnJhbWUiMAoFRnJhbWUSDQoFSW5k",
             "ZXgYASABKAUSGAoFY2FsbHMYAiADKAsyCS5zcmMuQ2FsbCIqCgRDYWxsEhAK",
             "CGZ1bmNOYW1lGAIgASgJEhAKCGZ1bmNBcmdzGAMgASgMIicKBFBvczMSCQoB",
-            "eBgBIAEoAhIJCgF5GAIgASgCEgkKAXoYAyABKAIiRwoVRW50aXR5U2hvd0lu",
-            "Zk9uTW92ZVRvEhMKC3JlY2VpdmVyVGFnGAEgASgFEhkKBmFyZ1BvcxgCIAEo",
-            "CzIJLnNyYy5Qb3MzIi4KF0VudGl0eVNob3dJbmZPblN0b3BNb3ZlEhMKC3Jl",
-            "Y2VpdmVyVGFnGAEgASgFIkQKF0VudGl0eVNob3dJbmZPbkhQQ2hhbmdlEhMK",
-            "C3JlY2VpdmVyVGFnGAEgASgFEhQKDGFyZ0hQUGVyY2VudBgCIAEoAiJWChhF",
-            "bnRpdHlTaG93SW5mT25DYXN0U2tpbGwSEwoLcmVjZWl2ZXJUYWcYASABKAUS",
-            "EgoKYXJnU2tpbGxJRBgCIAEoBRIRCglhcmdUYXJnZXQYAyABKAUiKQoSRW50",
-            "aXR5U2hvd0luZk9uSGl0EhMKC3JlY2VpdmVyVGFnGAEgASgFIj8KFUVudGl0",
-            "eVNob3dJbmZPbkRhbWFnZRITCgtyZWNlaXZlclRhZxgBIAEoBRIRCglhcmdE",
-            "YW1hZ2UYAiABKAUiOwoTRW50aXR5U2hvd0luZk9uSGVhbBITCgtyZWNlaXZl",
-            "clRhZxgBIAEoBRIPCgdhcmdIZWFsGAIgASgFIikKEkVudGl0eVNob3dJbmZP",
-            "bkRpZRITCgtyZWNlaXZlclRhZxgBIAEoBUIJqgIGUmVwbGF5YgZwcm90bzM="));
+            "eBgBIAEoAhIJCgF5GAIgASgCEgkKAXoYAyABKAIiSwoaU2NlbmVTaG93SW5m",
+            "T25DcmVhdGVTdWJPYmoSDgoGYXJnVGFnGAEgASgFEh0KCmFyZ0luaXRQb3MY",
+            "AiABKAsyCS5zcmMuUG9zMyJHChVFbnRpdHlTaG93SW5mT25Nb3ZlVG8SEwoL",
+            "cmVjZWl2ZXJUYWcYASABKAUSGQoGYXJnUG9zGAIgASgLMgkuc3JjLlBvczMi",
+            "LgoXRW50aXR5U2hvd0luZk9uU3RvcE1vdmUSEwoLcmVjZWl2ZXJUYWcYASAB",
+            "KAUiRAoXRW50aXR5U2hvd0luZk9uSFBDaGFuZ2USEwoLcmVjZWl2ZXJUYWcY",
+            "ASABKAUSFAoMYXJnSFBQZXJjZW50GAIgASgCIlYKGEVudGl0eVNob3dJbmZP",
+            "bkNhc3RTa2lsbBITCgtyZWNlaXZlclRhZxgBIAEoBRISCgphcmdTa2lsbElE",
+            "GAIgASgFEhEKCWFyZ1RhcmdldBgDIAEoBSIpChJFbnRpdHlTaG93SW5mT25I",
+            "aXQSEwoLcmVjZWl2ZXJUYWcYASABKAUiPwoVRW50aXR5U2hvd0luZk9uRGFt",
+            "YWdlEhMKC3JlY2VpdmVyVGFnGAEgASgFEhEKCWFyZ0RhbWFnZRgCIAEoBSI7",
+            "ChNFbnRpdHlTaG93SW5mT25IZWFsEhMKC3JlY2VpdmVyVGFnGAEgASgFEg8K",
+            "B2FyZ0hlYWwYAiABKAUiKQoSRW50aXR5U2hvd0luZk9uRGllEhMKC3JlY2Vp",
+            "dmVyVGFnGAEgASgFIkcKFVN1Yk9ialNob3dJbmZPbk1vdmVUbxITCgtyZWNl",
+            "aXZlclRhZxgBIAEoBRIZCgZhcmdQb3MYAiABKAsyCS5zcmMuUG9zMyIuChdT",
+            "dWJPYmpTaG93SW5mT25TdG9wTW92ZRITCgtyZWNlaXZlclRhZxgBIAEoBSIt",
+            "ChZTdWJPYmpTaG93SW5mT25UcmlnZ2VyEhMKC3JlY2VpdmVyVGFnGAEgASgF",
+            "QgmqAgZSZXBsYXliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -47,6 +53,7 @@ namespace Replay {
             new pbr::GeneratedClrTypeInfo(typeof(global::Replay.Frame), global::Replay.Frame.Parser, new[]{ "Index", "Calls" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Replay.Call), global::Replay.Call.Parser, new[]{ "FuncName", "FuncArgs" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Replay.Pos3), global::Replay.Pos3.Parser, new[]{ "X", "Y", "Z" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Replay.SceneShowInfOnCreateSubObj), global::Replay.SceneShowInfOnCreateSubObj.Parser, new[]{ "ArgTag", "ArgInitPos" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Replay.EntityShowInfOnMoveTo), global::Replay.EntityShowInfOnMoveTo.Parser, new[]{ "ReceiverTag", "ArgPos" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Replay.EntityShowInfOnStopMove), global::Replay.EntityShowInfOnStopMove.Parser, new[]{ "ReceiverTag" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Replay.EntityShowInfOnHPChange), global::Replay.EntityShowInfOnHPChange.Parser, new[]{ "ReceiverTag", "ArgHPPercent" }, null, null, null),
@@ -54,7 +61,10 @@ namespace Replay {
             new pbr::GeneratedClrTypeInfo(typeof(global::Replay.EntityShowInfOnHit), global::Replay.EntityShowInfOnHit.Parser, new[]{ "ReceiverTag" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Replay.EntityShowInfOnDamage), global::Replay.EntityShowInfOnDamage.Parser, new[]{ "ReceiverTag", "ArgDamage" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Replay.EntityShowInfOnHeal), global::Replay.EntityShowInfOnHeal.Parser, new[]{ "ReceiverTag", "ArgHeal" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Replay.EntityShowInfOnDie), global::Replay.EntityShowInfOnDie.Parser, new[]{ "ReceiverTag" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Replay.EntityShowInfOnDie), global::Replay.EntityShowInfOnDie.Parser, new[]{ "ReceiverTag" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Replay.SubObjShowInfOnMoveTo), global::Replay.SubObjShowInfOnMoveTo.Parser, new[]{ "ReceiverTag", "ArgPos" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Replay.SubObjShowInfOnStopMove), global::Replay.SubObjShowInfOnStopMove.Parser, new[]{ "ReceiverTag" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Replay.SubObjShowInfOnTrigger), global::Replay.SubObjShowInfOnTrigger.Parser, new[]{ "ReceiverTag" }, null, null, null)
           }));
     }
     #endregion
@@ -701,6 +711,178 @@ namespace Replay {
 
   }
 
+  /// <summary>
+  ///scene
+  /// </summary>
+  public sealed partial class SceneShowInfOnCreateSubObj : pb::IMessage<SceneShowInfOnCreateSubObj> {
+    private static readonly pb::MessageParser<SceneShowInfOnCreateSubObj> _parser = new pb::MessageParser<SceneShowInfOnCreateSubObj>(() => new SceneShowInfOnCreateSubObj());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SceneShowInfOnCreateSubObj> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SceneShowInfOnCreateSubObj() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SceneShowInfOnCreateSubObj(SceneShowInfOnCreateSubObj other) : this() {
+      argTag_ = other.argTag_;
+      ArgInitPos = other.argInitPos_ != null ? other.ArgInitPos.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SceneShowInfOnCreateSubObj Clone() {
+      return new SceneShowInfOnCreateSubObj(this);
+    }
+
+    /// <summary>Field number for the "argTag" field.</summary>
+    public const int ArgTagFieldNumber = 1;
+    private int argTag_;
+    /// <summary>
+    ///int32 receiverTag = 1;
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ArgTag {
+      get { return argTag_; }
+      set {
+        argTag_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "argInitPos" field.</summary>
+    public const int ArgInitPosFieldNumber = 2;
+    private global::Replay.Pos3 argInitPos_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Replay.Pos3 ArgInitPos {
+      get { return argInitPos_; }
+      set {
+        argInitPos_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SceneShowInfOnCreateSubObj);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SceneShowInfOnCreateSubObj other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ArgTag != other.ArgTag) return false;
+      if (!object.Equals(ArgInitPos, other.ArgInitPos)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ArgTag != 0) hash ^= ArgTag.GetHashCode();
+      if (argInitPos_ != null) hash ^= ArgInitPos.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (ArgTag != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(ArgTag);
+      }
+      if (argInitPos_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(ArgInitPos);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (ArgTag != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ArgTag);
+      }
+      if (argInitPos_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ArgInitPos);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SceneShowInfOnCreateSubObj other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ArgTag != 0) {
+        ArgTag = other.ArgTag;
+      }
+      if (other.argInitPos_ != null) {
+        if (argInitPos_ == null) {
+          argInitPos_ = new global::Replay.Pos3();
+        }
+        ArgInitPos.MergeFrom(other.ArgInitPos);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            ArgTag = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            if (argInitPos_ == null) {
+              argInitPos_ = new global::Replay.Pos3();
+            }
+            input.ReadMessage(argInitPos_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///entity
+  /// </summary>
   public sealed partial class EntityShowInfOnMoveTo : pb::IMessage<EntityShowInfOnMoveTo> {
     private static readonly pb::MessageParser<EntityShowInfOnMoveTo> _parser = new pb::MessageParser<EntityShowInfOnMoveTo>(() => new EntityShowInfOnMoveTo());
     private pb::UnknownFieldSet _unknownFields;
@@ -709,7 +891,7 @@ namespace Replay {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[4]; }
+      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -872,7 +1054,7 @@ namespace Replay {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[5]; }
+      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1001,7 +1183,7 @@ namespace Replay {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[6]; }
+      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1158,7 +1340,7 @@ namespace Replay {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[7]; }
+      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1343,7 +1525,7 @@ namespace Replay {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[8]; }
+      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[9]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1472,7 +1654,7 @@ namespace Replay {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[9]; }
+      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1629,7 +1811,7 @@ namespace Replay {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[10]; }
+      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1786,7 +1968,7 @@ namespace Replay {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[11]; }
+      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1880,6 +2062,430 @@ namespace Replay {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void MergeFrom(EntityShowInfOnDie other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ReceiverTag != 0) {
+        ReceiverTag = other.ReceiverTag;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            ReceiverTag = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  /// <summary>
+  ///subobj
+  /// </summary>
+  public sealed partial class SubObjShowInfOnMoveTo : pb::IMessage<SubObjShowInfOnMoveTo> {
+    private static readonly pb::MessageParser<SubObjShowInfOnMoveTo> _parser = new pb::MessageParser<SubObjShowInfOnMoveTo>(() => new SubObjShowInfOnMoveTo());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SubObjShowInfOnMoveTo> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[13]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SubObjShowInfOnMoveTo() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SubObjShowInfOnMoveTo(SubObjShowInfOnMoveTo other) : this() {
+      receiverTag_ = other.receiverTag_;
+      ArgPos = other.argPos_ != null ? other.ArgPos.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SubObjShowInfOnMoveTo Clone() {
+      return new SubObjShowInfOnMoveTo(this);
+    }
+
+    /// <summary>Field number for the "receiverTag" field.</summary>
+    public const int ReceiverTagFieldNumber = 1;
+    private int receiverTag_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ReceiverTag {
+      get { return receiverTag_; }
+      set {
+        receiverTag_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "argPos" field.</summary>
+    public const int ArgPosFieldNumber = 2;
+    private global::Replay.Pos3 argPos_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::Replay.Pos3 ArgPos {
+      get { return argPos_; }
+      set {
+        argPos_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SubObjShowInfOnMoveTo);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SubObjShowInfOnMoveTo other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ReceiverTag != other.ReceiverTag) return false;
+      if (!object.Equals(ArgPos, other.ArgPos)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ReceiverTag != 0) hash ^= ReceiverTag.GetHashCode();
+      if (argPos_ != null) hash ^= ArgPos.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (ReceiverTag != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(ReceiverTag);
+      }
+      if (argPos_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(ArgPos);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (ReceiverTag != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ReceiverTag);
+      }
+      if (argPos_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ArgPos);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SubObjShowInfOnMoveTo other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ReceiverTag != 0) {
+        ReceiverTag = other.ReceiverTag;
+      }
+      if (other.argPos_ != null) {
+        if (argPos_ == null) {
+          argPos_ = new global::Replay.Pos3();
+        }
+        ArgPos.MergeFrom(other.ArgPos);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            ReceiverTag = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            if (argPos_ == null) {
+              argPos_ = new global::Replay.Pos3();
+            }
+            input.ReadMessage(argPos_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SubObjShowInfOnStopMove : pb::IMessage<SubObjShowInfOnStopMove> {
+    private static readonly pb::MessageParser<SubObjShowInfOnStopMove> _parser = new pb::MessageParser<SubObjShowInfOnStopMove>(() => new SubObjShowInfOnStopMove());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SubObjShowInfOnStopMove> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[14]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SubObjShowInfOnStopMove() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SubObjShowInfOnStopMove(SubObjShowInfOnStopMove other) : this() {
+      receiverTag_ = other.receiverTag_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SubObjShowInfOnStopMove Clone() {
+      return new SubObjShowInfOnStopMove(this);
+    }
+
+    /// <summary>Field number for the "receiverTag" field.</summary>
+    public const int ReceiverTagFieldNumber = 1;
+    private int receiverTag_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ReceiverTag {
+      get { return receiverTag_; }
+      set {
+        receiverTag_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SubObjShowInfOnStopMove);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SubObjShowInfOnStopMove other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ReceiverTag != other.ReceiverTag) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ReceiverTag != 0) hash ^= ReceiverTag.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (ReceiverTag != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(ReceiverTag);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (ReceiverTag != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ReceiverTag);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SubObjShowInfOnStopMove other) {
+      if (other == null) {
+        return;
+      }
+      if (other.ReceiverTag != 0) {
+        ReceiverTag = other.ReceiverTag;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            ReceiverTag = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SubObjShowInfOnTrigger : pb::IMessage<SubObjShowInfOnTrigger> {
+    private static readonly pb::MessageParser<SubObjShowInfOnTrigger> _parser = new pb::MessageParser<SubObjShowInfOnTrigger>(() => new SubObjShowInfOnTrigger());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SubObjShowInfOnTrigger> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Replay.BattleReflection.Descriptor.MessageTypes[15]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SubObjShowInfOnTrigger() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SubObjShowInfOnTrigger(SubObjShowInfOnTrigger other) : this() {
+      receiverTag_ = other.receiverTag_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SubObjShowInfOnTrigger Clone() {
+      return new SubObjShowInfOnTrigger(this);
+    }
+
+    /// <summary>Field number for the "receiverTag" field.</summary>
+    public const int ReceiverTagFieldNumber = 1;
+    private int receiverTag_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int ReceiverTag {
+      get { return receiverTag_; }
+      set {
+        receiverTag_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SubObjShowInfOnTrigger);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SubObjShowInfOnTrigger other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (ReceiverTag != other.ReceiverTag) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (ReceiverTag != 0) hash ^= ReceiverTag.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (ReceiverTag != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(ReceiverTag);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (ReceiverTag != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ReceiverTag);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SubObjShowInfOnTrigger other) {
       if (other == null) {
         return;
       }
