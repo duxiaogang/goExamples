@@ -55,12 +55,19 @@ func FindFuncWithName(name string) (uintptr, error) {
 
 func FindFuncWithName2(soPath, name string) (uintptr, error) {
 	var cErr *C.char
-	pathStr := make([]byte, len(soPath)+1) //todo:
-	copy(pathStr, soPath)
 	nameStr := make([]byte, len(name)+1)
 	copy(nameStr, name)
 
-	handle := C.localLookup2((*C.char)(unsafe.Pointer(&pathStr[0])), (*C.char)(unsafe.Pointer(&nameStr[0])), &cErr)
+	cPath := make([]byte, C.PATH_MAX+1)
+	cRelName := make([]byte, len(soPath)+1)
+	copy(cRelName, soPath)
+	if C.realpath(
+		(*C.char)(unsafe.Pointer(&cRelName[0])),
+		(*C.char)(unsafe.Pointer(&cPath[0]))) == nil {
+		return nil, errors.New(`FindFuncWithName2("` + soPath + `"): realpath failed`)
+	}
+
+	handle := C.localLookup2((*C.char)(unsafe.Pointer(&cPath[0])), (*C.char)(unsafe.Pointer(&nameStr[0])), &cErr)
 	if handle == nil {
 		return 0, errors.New(C.GoString(cErr))
 	}
