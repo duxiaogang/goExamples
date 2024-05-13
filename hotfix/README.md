@@ -13,3 +13,17 @@
 - todo:
   - patch过程安全
   - text cache一致性
+
+
+- test：
+    - dlsym3：
+        - 没有handle时，想找到so中同名函数的办法：再次dlopen
+        - 算是最终的解决方案了
+    - dlsym2：
+        - 测试了default/next等各种可能得情况
+        - 不管从哪调用(exe or any so)，linux下面default只对应exe中函数
+        - next按说应该找到下一个so中的同名函数，但除了在exe中调用正常外，其他so中调用都不生效
+        - 正确handle的话，总是能找到handle对应的so的函数
+    - dlsym：
+        - 没啥用
+
