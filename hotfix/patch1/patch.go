@@ -5,8 +5,6 @@ import (
 	"github.com/agiledragon/gomonkey/v2"
 	"github.com/duxiaogang/goExamples/hotfix/app"
 	"github.com/duxiaogang/goExamples/hotfix/patch"
-	"github.com/duxiaogang/goExamples/hotfix/patch/lookup"
-	"reflect"
 	"unsafe"
 	_ "unsafe"
 )
@@ -68,64 +66,24 @@ func (p patch1) Patch(soPath string) (any, error) {
 	patched := gomonkey.NewPatches()
 
 	//replace GlobalFunc1
-	target, err := lookup.MakeValueByFunctionName(app.GlobalFunc1, "github.com/duxiaogang/goExamples/hotfix/app.GlobalFunc1")
-	if err != nil {
-		return nil, err
-	}
-	patched.ApplyCore(target, reflect.ValueOf(replacedFunc1))
-	//patched.ApplyCore(reflect.ValueOf(app.GlobalFunc1), reflect.ValueOf(replacedFunc1))
-	target, err = lookup.MakeValueByFunctionName2(app.GlobalFunc1, soPath, "github.com/duxiaogang/goExamples/hotfix/app.GlobalFunc1")
-	if err != nil {
-		return nil, err
-	}
-	patched.ApplyCore(target, reflect.ValueOf(replacedFunc1))
+	patch.ApplyExeAndSo(patched, app.GlobalFunc1, soPath, "github.com/duxiaogang/goExamples/hotfix/app.GlobalFunc1", replacedFunc1)
 
 	//replace GlobalFunc2
-	target, err = lookup.MakeValueByFunctionName(app.GlobalFunc2, "github.com/duxiaogang/goExamples/hotfix/app.GlobalFunc2")
-	if err != nil {
-		return nil, err
-	}
-	patched.ApplyCore(target, reflect.ValueOf(replacedFunc2))
-	//patched.ApplyCore(reflect.ValueOf(app.GlobalFunc2), reflect.ValueOf(replacedFunc2))
-	target, err = lookup.MakeValueByFunctionName2(app.GlobalFunc2, soPath, "github.com/duxiaogang/goExamples/hotfix/app.GlobalFunc2")
-	if err != nil {
-		return nil, err
-	}
-	patched.ApplyCore(target, reflect.ValueOf(replacedFunc2))
+	patch.ApplyExeAndSo(patched, app.GlobalFunc2, soPath, "github.com/duxiaogang/goExamples/hotfix/app.GlobalFunc2", replacedFunc2)
 
 	//DONT replace GlobalFunc3
 
 	//replace privateFunc1
-	target, err = lookup.MakeValueByFunctionName(privateFunc1, "github.com/duxiaogang/goExamples/hotfix/app.privateFunc1")
-	if err != nil {
-		return nil, err
-	}
-	patched.ApplyCore(target, reflect.ValueOf(replacedPrivateFunc1))
-	patched.ApplyCore(reflect.ValueOf(privateFunc1), reflect.ValueOf(replacedPrivateFunc1))
+	patch.ApplyExeAndSo(patched, privateFunc1, soPath, "github.com/duxiaogang/goExamples/hotfix/app.privateFunc1", replacedPrivateFunc1)
 
 	//replace Object1.Method1
-	target, err = lookup.MakeValueByFunctionName((*app.Object1).Method1, "github.com/duxiaogang/goExamples/hotfix/app.(*Object1).Method1")
-	if err != nil {
-		return nil, err
-	}
-	patched.ApplyCore(target, reflect.ValueOf(replacedObject1Method1))
-	patched.ApplyCore(reflect.ValueOf((*app.Object1).Method1), reflect.ValueOf(replacedObject1Method1))
+	patch.ApplyExeAndSo(patched, (*app.Object1).Method1, soPath, "github.com/duxiaogang/goExamples/hotfix/app.(*Object1).Method1", replacedObject1Method1)
 
 	//replace Object1.privateMethod1
-	target, err = lookup.MakeValueByFunctionName(object1PrivateMethod1, "github.com/duxiaogang/goExamples/hotfix/app.(*Object1).privateMethod1")
-	if err != nil {
-		return nil, err
-	}
-	patched.ApplyCore(target, reflect.ValueOf(replacedObject1PrivateMethod1))
-	patched.ApplyCore(reflect.ValueOf(object1PrivateMethod1), reflect.ValueOf(replacedObject1PrivateMethod1))
+	patch.ApplyExeAndSo(patched, object1PrivateMethod1, soPath, "github.com/duxiaogang/goExamples/hotfix/app.(*Object1).privateMethod1", replacedObject1PrivateMethod1)
 
 	//replace CreateClosure1.func1
-	target, err = lookup.MakeValueByFunctionName(createClosure1func1, "github.com/duxiaogang/goExamples/hotfix/app.CreateClosure1.func1")
-	if err != nil {
-		return nil, err
-	}
-	patched.ApplyCore(target, reflect.ValueOf(replacedCreateClosure1func1))
-	patched.ApplyCore(reflect.ValueOf(createClosure1func1), reflect.ValueOf(replacedCreateClosure1func1))
+	patch.ApplyExeAndSo(patched, createClosure1func1, soPath, "github.com/duxiaogang/goExamples/hotfix/app.CreateClosure1.func1", replacedCreateClosure1func1)
 
 	//replace GlobalVar1
 	patched.ApplyGlobalVar(&app.GlobalVar1, 1)

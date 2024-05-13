@@ -64,7 +64,7 @@ func FindFuncWithName2(soPath, name string) (uintptr, error) {
 	if C.realpath(
 		(*C.char)(unsafe.Pointer(&cRelName[0])),
 		(*C.char)(unsafe.Pointer(&cPath[0]))) == nil {
-		return nil, errors.New(`FindFuncWithName2("` + soPath + `"): realpath failed`)
+		return 0, errors.New(`FindFuncWithName2("` + soPath + `"): realpath failed`)
 	}
 
 	handle := C.localLookup2((*C.char)(unsafe.Pointer(&cPath[0])), (*C.char)(unsafe.Pointer(&nameStr[0])), &cErr)

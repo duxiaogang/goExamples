@@ -2,7 +2,10 @@ package patch
 
 import (
 	"fmt"
+	"github.com/agiledragon/gomonkey/v2"
+	"github.com/duxiaogang/goExamples/hotfix/patch/lookup"
 	"plugin"
+	"reflect"
 )
 
 type PatchInterface interface {
@@ -54,5 +57,23 @@ func (p *PatchTool) Reset() error {
 		}
 		p.patched = nil
 	}
+	return nil
+}
+
+func ApplyExeAndSo(patched *gomonkey.Patches, target any, soPath, name string, new any) error {
+	//apply to exe
+	t, err := lookup.MakeValueByFunctionName(target, name)
+	if err != nil {
+		return err
+	}
+	patched.ApplyCore(t, reflect.ValueOf(new))
+
+	//apply to so local
+	t, err = lookup.MakeValueByFunctionName2(target, soPath, name)
+	if err != nil {
+		return err
+	}
+	patched.ApplyCore(t, reflect.ValueOf(new))
+
 	return nil
 }
