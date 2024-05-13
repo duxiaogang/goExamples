@@ -7,6 +7,7 @@ import (
 	"github.com/duxiaogang/goExamples/hotfix/patch"
 	"github.com/duxiaogang/goExamples/hotfix/patch/lookup"
 	"reflect"
+	"unsafe"
 	_ "unsafe"
 )
 
@@ -16,7 +17,8 @@ type patch2 struct {
 }
 
 func ReplacedFunc1() string {
-	return "patch2's ReplacedFunc1()"
+	return "patch2's ReplacedFunc1()|" + app.GlobalFunc2()
+	//return "patch2's ReplacedFunc1()|" + ReplacedFunc2()
 }
 
 func ReplacedFunc2() string {
@@ -24,13 +26,18 @@ func ReplacedFunc2() string {
 }
 
 func ReplacedFunc3() string {
-	return "patch2's ReplacedFunc3()"
+	//return "patch2's ReplacedFunc3()"
+	return "patch2's ReplacedFunc3()|" + app.GlobalFunc2()
 }
 
 //go:linkname privateVar1 github.com/duxiaogang/goExamples/hotfix/app.privateVar1
 var privateVar1 int
 
 func (p patch2) Patch() (any, error) {
+	f1 := app.GlobalFunc1
+	f2 := app.GlobalFunc2
+	fmt.Printf("patch2.Patch(), app.GlobalFunc1=0x%x, app.GlobalFunc2=0x%x\n", **(**uintptr)(unsafe.Pointer(&f1)), **(**uintptr)(unsafe.Pointer(&f2)))
+
 	patched := gomonkey.NewPatches()
 
 	//replace GlobalFunc1
@@ -41,7 +48,13 @@ func (p patch2) Patch() (any, error) {
 	patched.ApplyCore(target, reflect.ValueOf(ReplacedFunc1))
 	patched.ApplyCore(reflect.ValueOf(app.GlobalFunc1), reflect.ValueOf(ReplacedFunc1))
 
-	//DONT replace GlobalFunc2
+	//replace GlobalFunc2
+	target, err = lookup.MakeValueByFunctionName(app.GlobalFunc2, "github.com/duxiaogang/goExamples/hotfix/app.GlobalFunc2")
+	if err != nil {
+		return nil, err
+	}
+	patched.ApplyCore(target, reflect.ValueOf(ReplacedFunc2))
+	patched.ApplyCore(reflect.ValueOf(app.GlobalFunc2), reflect.ValueOf(ReplacedFunc2))
 
 	//replace GlobalFunc3
 	target, err = lookup.MakeValueByFunctionName(app.GlobalFunc3, "github.com/duxiaogang/goExamples/hotfix/app.GlobalFunc3")

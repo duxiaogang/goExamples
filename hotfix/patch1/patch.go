@@ -7,6 +7,7 @@ import (
 	"github.com/duxiaogang/goExamples/hotfix/patch"
 	"github.com/duxiaogang/goExamples/hotfix/patch/lookup"
 	"reflect"
+	"unsafe"
 	_ "unsafe"
 )
 
@@ -16,7 +17,8 @@ type patch1 struct {
 }
 
 func replacedFunc1() string {
-	return "patch1's replacedFunc1()"
+	return "patch1's replacedFunc1()|" + app.GlobalFunc2()
+	//return "patch1's replacedFunc1()|" + replacedFunc2()
 }
 
 func replacedFunc2() string {
@@ -59,6 +61,10 @@ func replacedCreateClosure1func1() string {
 var privateVar1 int
 
 func (p patch1) Patch() (any, error) {
+	f1 := app.GlobalFunc1
+	f2 := app.GlobalFunc2
+	fmt.Printf("patch1.Patch(), app.GlobalFunc1=0x%x, app.GlobalFunc2=0x%x\n", **(**uintptr)(unsafe.Pointer(&f1)), **(**uintptr)(unsafe.Pointer(&f2)))
+
 	patched := gomonkey.NewPatches()
 
 	//replace GlobalFunc1

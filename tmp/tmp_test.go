@@ -1,6 +1,7 @@
 package tmp
 
 import (
+	"crypto/md5"
 	"fmt"
 	"io"
 	"os"
@@ -77,4 +78,16 @@ func (o *obj) f1() {
 func Test3(t *testing.T) {
 	o := obj{}
 	o.f1()
+}
+
+func Test4(t *testing.T) {
+	data := []byte("Hello, World!")
+	//goal := "9d6b00250efc6dfd4efe667d2e0970ad"
+
+	hash := md5.Sum(data)
+	for i := 0; i < 100*1000*1000; i++ {
+		hash = md5.Sum(hash[:])
+	}
+
+	fmt.Printf("%x\n", hash)
 }
