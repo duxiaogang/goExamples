@@ -25,11 +25,13 @@ package lookup
 	void* h = dlopen(soPath, 0x102); //flags: RTLD_NOW|RTLD_GLOBAL
 	if (h == NULL) {
    		*err = (char*)dlerror();
+		return NULL;
 	}
    	void* r = dlsym(h, name);
    	if (r == NULL) {
    		*err = (char*)dlerror();
    	}
+	dlclose(h);
    	return r;
    }
 */
