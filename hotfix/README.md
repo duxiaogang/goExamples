@@ -16,6 +16,9 @@
 
 
 - test：
+    - dlsym4：
+        - 非dlopen方式，也就是正常方式使用so，此时default/next完全符合预期
+        - 其他几个例子都是基于dlopen的
     - dlsym3：
         - 没有handle时，想找到so中同名函数的办法：再次dlopen
         - 算是最终的解决方案了
