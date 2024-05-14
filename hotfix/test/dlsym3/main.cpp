@@ -73,6 +73,11 @@ int main(int argc, char *argv[])
 	LoadSO("./libfunc3.so");
 	ListSymbolWrapper("ListSymbol3", "./libfunc3.so", "XXX");
 
+	//for (int i=0; i<1000*1000; i++)
+	//{
+	//	ListSymbolWrapper("ListSymbol3", "./libfunc3.so", "XXX");
+	//}
+
 	//while(true)
 	//{
 	//	sleep(1);

@@ -35,6 +35,7 @@ extern "C" {
 			dlerror();
 			void *addr = dlsym(so, name);
 			printf("	local, addr=%p, dlerror=%s\n", addr, dlerror());
+			dlclose(so);
 		}
 	}
 }
